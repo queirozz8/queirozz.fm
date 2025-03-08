@@ -225,7 +225,7 @@ export default function Header() {
           onMouseUp={() => setColorBellButton(normalColor) }
           className='flex justify-center items-center cursor-pointer z-10 hover:scale-105 transition' 
           title='Novidades'>
-             <Bell color={colorBellButton} size={18} />
+            <Bell color={colorBellButton} size={18} />
         </button>
 
         {/* Botão de Usuário */}
