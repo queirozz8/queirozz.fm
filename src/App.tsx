@@ -7,7 +7,6 @@ export default function App() {
     <>
       <Header />
       <main>
-
         <Sidebar />
       </main>
       <Footer />
