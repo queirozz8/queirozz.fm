@@ -13,7 +13,11 @@ export default function Sidebar() {
 
   return (
     <aside className="flex flex-col gap-3 relative left-2 p-5 w-[17.5rem] rounded-lg bg-[#121212]">
+
+      {/* Div que engloba todos os botões superiores da Sidebar (menos os filtros) */}
       <div className="flex justify-between items-center">
+
+        {/* Botão da biblioteca. Engloba o ícone e o texto dele */}
         <button 
           onPointerOver={ () => setLibraryColor(lightNormalColor) } 
           onPointerLeave={ () => setLibraryColor(normalColor) }
@@ -24,10 +28,13 @@ export default function Sidebar() {
           <h1 className="text-zinc-300 group-hover:text-[var(--light-normal-color)] font-extrabold">Sua Biblioteca</h1>
         </button>
 
+        {/* Div que engloba o botão de criar e o botão de mostrar mais */}
         <div className="flex gap-3">
+
           {/* Botão de Criar adaptado para a barra lateral com seu respectivo menu */}
           <CreateButton isSidebar={true} />
 
+          {/* Botão de mostrar mais */}
           <button 
             onPointerOver={ () => setShowMoreButtonColor(lightNormalColor) }
             onPointerLeave={ () => setShowMoreButtonColor(normalColor) }
@@ -36,7 +43,16 @@ export default function Sidebar() {
             <ArrowRight color={showMoreButtonColor} />
           </button>
         </div>
+
       </div>
+
+      {/* Botão de filtro por playlists */}
+      <button 
+        className='flex justify-center items-center relative right-1 w-fit mt-2 px-3 py-2 rounded-4xl 
+        text-sm text-zinc-200 font-semibold bg-[#2a2a2a] hover:bg-[#333333] active:bg-[#444444] transition cursor-pointer'
+      >
+        Playlists
+      </button>
     </aside>
   )
 }
