@@ -1,5 +1,5 @@
 import { useState } from "react"
-import CreateButton from "./CreateButton"
+import CreateButton from "./buttons/CreateButton"
 import { LibraryBig, ArrowRight } from "lucide-react"
 
 export default function Sidebar() {
@@ -25,7 +25,7 @@ export default function Sidebar() {
         </button>
 
         <div className="flex gap-3">
-          {/* Botão de Criar adaptado para a barra lateral */}
+          {/* Botão de Criar adaptado para a barra lateral com seu respectivo menu */}
           <CreateButton isSidebar={true} />
 
           <button 
