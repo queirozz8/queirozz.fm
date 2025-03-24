@@ -23,7 +23,7 @@ export default function UserButton() {
       <menu
         onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
         /* Os displays não conflitam pois o block/hidden é adicionado dinâmicamente; ou seja, sobrescreve todos os outros displays existentes. */
-        className={`flex flex-col justify-center absolute ${isUserButtonClicked ? 'block' : 'hidden'} top-14 right-0 w-[14.3rem] h-80 px-2 py-1 rounded-lg bg-[var(--bg-color)] transition box-content`}
+        className={`flex flex-col justify-center absolute ${isUserButtonClicked ? 'block' : 'hidden'} top-14 right-0 w-[14.3rem] h-80 px-2 py-2 rounded-lg bg-[var(--bg-color)] transition box-content`}
       >
         <li><button 
           onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
