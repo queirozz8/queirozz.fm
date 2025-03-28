@@ -1,5 +1,6 @@
 import { useState } from "react"
 import CreateButton from "./buttons/CreateButton"
+import FilterButton from "./buttons/FilterButton"
 import { LibraryBig, ArrowRight } from "lucide-react"
 
 export default function Sidebar() {
@@ -43,16 +44,16 @@ export default function Sidebar() {
             <ArrowRight color={showMoreButtonColor} />
           </button>
         </div>
-
       </div>
 
-      {/* Botão de filtro por playlists */}
-      <button 
-        className='flex justify-center items-center relative right-1 w-fit mt-2 px-3 py-2 rounded-4xl 
-        text-sm text-zinc-200 font-semibold bg-[#2a2a2a] hover:bg-[#333333] active:bg-[#444444] transition cursor-pointer'
-      >
-        Playlists
-      </button>
+      {/* Div dos filtros */}
+      <div className="flex gap-2">
+
+        {/* Botão de filtro por playlists */}
+        <FilterButton title="Playlists" />
+        {/* Botão de filtro por artistas */}
+        <FilterButton title="Artistas" />
+      </div>
     </aside>
   )
 }

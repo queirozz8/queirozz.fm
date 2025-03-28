@@ -8,7 +8,7 @@ type Props = {
 export default function CreateButton( {isSidebar}: Props) {
   const [isCreateButtonClicked, setIsCreateButtonClicked] = useState<boolean>(false)
   const [colorCreateButton, setColorCreateButton] = useState<string>('#b3b3b3')
-
+  
   const normalColor: string = '#989999'
   const lightNormalColor: string = '#fffefe'
 
