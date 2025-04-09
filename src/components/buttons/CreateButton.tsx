@@ -9,8 +9,8 @@ export default function CreateButton( {isSidebar}: Props) {
   const [isCreateButtonClicked, setIsCreateButtonClicked] = useState<boolean>(false)
   const [colorCreateButton, setColorCreateButton] = useState<string>('#b3b3b3')
   
-  const normalColor: string = '#989999'
-  const lightNormalColor: string = '#fffefe'
+  const normalColor = '#989999'
+  const lightNormalColor = '#fffefe'
 
   const [colorMusicIcon, setColorMusicIcon] = useState<string>(lightNormalColor)
   const [colorBlendIcon, setColorBlendIcon] = useState<string>(lightNormalColor)

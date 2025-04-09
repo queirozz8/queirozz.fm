@@ -3,7 +3,7 @@ import { User, SquareArrowOutUpRight } from 'lucide-react'
 
 export default function UserButton() {
   const [isUserButtonClicked, setIsUserButtonClicked] = useState<boolean>(false)
-  const lightNormalColor: string = '#fffefe'
+  const lightNormalColor = '#fffefe'
 
   return (
       /* Div que engloba o botão de Usuário e o seu menu */

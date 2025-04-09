@@ -6,9 +6,9 @@ import { House, Compass, Search, CircleArrowDown, Bell, X } from 'lucide-react'
 export default function Header() {
   /* Criação de variáveis contendo o hex das cores mais usadas pelos elementos. 
   Vale somente para o TypeScript */
-  const normalColor: string = '#989999'
-  const lightNormalColor: string = '#fffefe'
-  const clickedColor: string = '#7a7a7a'
+  const normalColor = '#989999'
+  const lightNormalColor = '#fffefe'
+  const clickedColor = '#7a7a7a'
 
   /* Estados dos elementos */
   const [colorHouseButton, setColorHouseButton] = useState<string>(normalColor)
