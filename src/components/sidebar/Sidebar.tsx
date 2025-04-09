@@ -1,13 +1,13 @@
 import { useState } from "react"
-import CreateButton from "./buttons/CreateButton"
-import FilterButton from "./buttons/FilterButton"
+import CreateButton from "./../buttons/CreateButton"
+import Filters from "./Filters"
 import { LibraryBig, ArrowRight } from "lucide-react"
 
 export default function Sidebar() {
   /* Criação de variáveis contendo o hex das cores mais usadas pelos elementos. 
   Vale somente para o TypeScript */
-  const normalColor: string = '#989999'
-  const lightNormalColor: string = '#fffefe'
+  const normalColor = '#989999'
+  const lightNormalColor = '#fffefe'
 
   const [libraryColor, setLibraryColor] = useState<string>('#b3b3b3')
   const [showMoreButtonColor, setShowMoreButtonColor] = useState<string>(normalColor)
@@ -46,14 +46,8 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Div dos filtros */}
-      <div className="flex gap-2">
-
-        {/* Botão de filtro por playlists */}
-        <FilterButton title="Playlists" />
-        {/* Botão de filtro por artistas */}
-        <FilterButton title="Artistas" />
-      </div>
+      {/* Filtros */}
+      <Filters />
     </aside>
   )
 }
