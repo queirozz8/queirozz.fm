@@ -8,7 +8,7 @@ export default function RemoveFilters({ isSomeFilterOn }: Props) {
   return (
     /* Botão de remover os filtros - Só é exibido quando algum filtro é ativado */
     <button
-      onPointerUp={ () => /* TODO */ console.log('asdas') }
+      onPointerUp={ () => /* TODO */ console.log() }
       className={`${isSomeFilterOn ? 'flex justify-center items-center' : 'hidden'} 
       size-8 rounded-4xl bg-[#2a2a2a] hover:bg-[#333333] active:bg-[#444444] transition cursor-pointer`}
     >
