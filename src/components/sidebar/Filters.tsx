@@ -10,7 +10,8 @@ const bgColors = {
   normal: 'bg-[#2a2a2a]',
   hovered: 'bg-[#333333]',
   clicking: 'bg-[#444444]',
-  clicked: 'bg-[#ffffff]'
+  clicked: 'bg-[#ffffff]',
+  clickingWhenOn: 'bg-[#c6c6c6]'
 } as const
 
 /* Cores de texto para os botões de filtro */
@@ -22,7 +23,7 @@ const textColors = {
 /* Tipo de cada botão de fitro (que é uma propriedade dentro do objeto filters) */
 type filter = {
   isOn: boolean
-  bg: 'bg-[#2a2a2a]' | 'bg-[#333333]' | 'bg-[#444444]' | 'bg-[#ffffff]'
+  bg: 'bg-[#2a2a2a]' | 'bg-[#333333]' | 'bg-[#444444]' | 'bg-[#ffffff]' | 'bg-[#c6c6c6]'
   text: 'text-zinc-200' | 'text-zinc-700'
   title: string
 }
@@ -61,31 +62,36 @@ export default function Filters() {
   /* Função para modificar as propriedades de um determinado filtro */
   function setterFilterProperty(filter: string, property: string, value: string | boolean) {
     /* Se um botão for ligado, mas já houver outro botão ligado também, então desativamos o primeiro botão e depois ativamos o atual, normalmente. */
-    if (property === 'isOn' && value === true && isSomeFilterOn) {
-      Object.entries(filters).forEach(([filter, filterConfig]) => {
+    if (property === 'isOn' && value === true && isSomeFilterOn.current) {
+      Object.entries(filters).forEach(([previousFilter, filterConfig]) => {
         if (filterConfig.isOn) {
           setFilters(prev => (
             {
               ...prev,
+              [previousFilter]: {
+                ...prev[previousFilter],
+                isOn: false
+              },
+
               [filter]: {
                 ...prev[filter],
-                isOn: false
+                isOn: true
               }
             }
           ))
         }
       })
-    }
-
-    setFilters(prev => (
-      {
-        ...prev,
-        [filter]: {
-          ...prev[filter],
-          [property]: [value]
+    } else {
+      setFilters(prev => (
+        {
+          ...prev,
+          [filter]: {
+            ...prev[filter],
+            [property]: value
+          }
         }
-      }
-    ))
+      ))
+    }
   }
 
 
@@ -109,8 +115,10 @@ export default function Filters() {
           }
         }))
 
-        if (filters[filter].isOn) isSomeFilterOn.current = true 
-        else isSomeFilterOn.current = false
+        if (filters[filter].isOn) isSomeFilterOn.current = true
+        /* Se um filtro anterior estiver ligado, mas o atual do loop não estiver, então isSomeFilterOn iria receber false, mesmo que o botão anterior estivesse ligado.
+        Sendo assim, fazemos essa verificação para saber se o botão anterior estava ligado ou não. */
+        else if (!filters[filter].isOn && isSomeFilterOn.current !== true) isSomeFilterOn.current = false
       }
     })
 
@@ -128,7 +136,7 @@ export default function Filters() {
 
   return (
     <div className="flex items-center gap-3">
-      {/* { Botão de remover os filtros - Só é exibido quando algum filtro é ativado } */}
+      {/* { Botão de remover os filtros — Só é exibido quando algum filtro é ativado } */}
       <RemoveFilters isSomeFilterOn={isSomeFilterOn.current} />
 
       <div className="flex items-center gap-3">
@@ -136,12 +144,12 @@ export default function Filters() {
           return (
             <button 
               onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filter, 'bg', bgColors.hovered) }
-              onPointerDown={ () => setterFilterProperty(filter, 'bg', bgColors.clicking) }
-              onPointerUp={ () => setterFilterProperty(filter, 'isOn', !filterConfig.isOn) }
+              onPointerDown={ () => filterConfig.isOn ? setterFilterProperty(filter, 'bg', bgColors.clickingWhenOn) : setterFilterProperty(filter, 'bg', bgColors.clicking) }
+              onPointerUp={ () => { setterFilterProperty(filter, 'isOn', !filterConfig.isOn); console.log(filterConfig, filterConfig.isOn) } }
               onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filter, 'bg', bgColors.normal) }
               className={`flex justify-center items-center relative right-1 w-fit px-3 py-[0.40rem] rounded-4xl 
               text-sm ${filterConfig.text} font-semibold ${filterConfig.bg} transition cursor-pointer`}
-              key={filter} /* Diferencia ele dos outros botões */
+              key={filterConfig.title} /* Diferencia ele dos outros botões */
             >
               {filterConfig.title}
             </button>
