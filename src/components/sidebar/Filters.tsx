@@ -21,7 +21,7 @@ const textColors = {
 } as const
 
 /* Tipo de cada botão de fitro (que é uma propriedade dentro do objeto filters) */
-type filter = {
+export type filter = {
   isOn: boolean
   bg: 'bg-[#2a2a2a]' | 'bg-[#333333]' | 'bg-[#444444]' | 'bg-[#ffffff]' | 'bg-[#c6c6c6]'
   text: 'text-zinc-200' | 'text-zinc-700'
@@ -103,22 +103,24 @@ export default function Filters() {
       Armazenamos todos os estados anteriores de isOn de cada filtro usando useRef (prevValuesOfIsOn), e comparamos com o estado atual (que está dentro de filters).
       Se:
         Se o valor anterior (prevIsOn) for diferente do atual (filters[filter].isOn), significa que esse filtro foi ativado ou desativado recentemente.
-          Nesse caso, aplicamos as alterações visuais (cores de bg e text) apenas a esse filtro. */
+          Nesse caso, aplicamos as alterações visuais (cores de bg e text) a esse filtro. */
     Object.entries(prevValuesOfIsOn.current).forEach(([filter, prevIsOn]) => {
       if (prevIsOn !== filters[filter].isOn) {
-        setFilters(prev => ({
-          ...prev,
-          [filter]: {
-            ...prev[filter],
-            bg: prev[filter].isOn ? bgColors.clicked : bgColors.hovered,
-            text: prev[filter].isOn ? textColors.clicked : textColors.normal
+        setFilters(prev => {
+          const newFilters = {
+            ...prev,
+            [filter]: {
+              ...prev[filter],
+              bg: prev[filter].isOn ? bgColors.clicked : bgColors.hovered,
+              text: prev[filter].isOn ? textColors.clicked : textColors.normal
+            }
           }
-        }))
 
-        if (filters[filter].isOn) isSomeFilterOn.current = true
-        /* Se um filtro anterior estiver ligado, mas o atual do loop não estiver, então isSomeFilterOn iria receber false, mesmo que o botão anterior estivesse ligado.
-        Sendo assim, fazemos essa verificação para saber se o botão anterior estava ligado ou não. */
-        else if (!filters[filter].isOn && isSomeFilterOn.current !== true) isSomeFilterOn.current = false
+          const atLeastOneOn = Object.values(newFilters).some(filter => filter.isOn)
+          isSomeFilterOn.current = atLeastOneOn
+          
+          return newFilters
+        })
       }
     })
 
@@ -134,10 +136,11 @@ export default function Filters() {
     })
   }, [filters, filters.playlists.isOn, filters.artists.isOn])
 
+  
   return (
     <div className="flex items-center gap-3">
       {/* { Botão de remover os filtros — Só é exibido quando algum filtro é ativado } */}
-      <RemoveFilters isSomeFilterOn={isSomeFilterOn.current} />
+      <RemoveFilters filters={filters} setFilters={setFilters} isSomeFilterOn={isSomeFilterOn.current} />
 
       <div className="flex items-center gap-3">
         { Object.entries(filters).map(([filter, filterConfig]) => {
@@ -145,7 +148,7 @@ export default function Filters() {
             <button 
               onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filter, 'bg', bgColors.hovered) }
               onPointerDown={ () => filterConfig.isOn ? setterFilterProperty(filter, 'bg', bgColors.clickingWhenOn) : setterFilterProperty(filter, 'bg', bgColors.clicking) }
-              onPointerUp={ () => { setterFilterProperty(filter, 'isOn', !filterConfig.isOn); console.log(filterConfig, filterConfig.isOn) } }
+              onPointerUp={ () => setterFilterProperty(filter, 'isOn', !filterConfig.isOn) }
               onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filter, 'bg', bgColors.normal) }
               className={`flex justify-center items-center relative right-1 w-fit px-3 py-[0.40rem] rounded-4xl 
               text-sm ${filterConfig.text} font-semibold ${filterConfig.bg} transition cursor-pointer`}
