@@ -1,5 +1,5 @@
 import { RefObject } from 'react'
-import { filter } from '../Filters'
+import { filter } from '../buttons/Filters'
 
 /* Tipo do setter do estado */
 type setFiltersType = React.Dispatch<React.SetStateAction<Record<string, filter>>>

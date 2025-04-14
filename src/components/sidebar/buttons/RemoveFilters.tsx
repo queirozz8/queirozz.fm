@@ -1,5 +1,5 @@
 import { X } from 'lucide-react'
-import { filter } from '../Filters'
+import { filter } from '../buttons/Filters'
 
 type setFiltersType = React.Dispatch<React.SetStateAction<Record<string, filter>>>
 

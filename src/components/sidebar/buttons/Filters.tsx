@@ -1,9 +1,9 @@
 import { useState, useRef } from "react"
-import RemoveFilters from "./buttons/RemoveFilters"
+import RemoveFilters from "./RemoveFilters"
 /* Função que atualiza uma propriedade específica de um botão do objeto filters */
-import setterFilterProperty from "./utils/setterFilterProperty"
-import useFilterEffects from "./hooks/useFilterEffects"
-import { bgColors, textColors } from "./utils/bgAndTextColors"
+import setterFilterProperty from "./../utils/setterFilterProperty"
+import useFilterEffects from "./../hooks/useFilterEffects"
+import { bgColors, textColors } from "./../utils/bgAndTextColors"
 
 /* Nesse código, eu poderia ter feito uma solução um pouco mais simples,
 criando por exemplo, um estado para cada botão, ao invés de um estado centralizado.

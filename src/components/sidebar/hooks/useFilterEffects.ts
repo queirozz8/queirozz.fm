@@ -1,5 +1,5 @@
 import { RefObject, useEffect } from "react"
-import { filter } from '../Filters'
+import { filter } from '../buttons/Filters'
 import { bgColors, textColors } from "../utils/bgAndTextColors"
 
 /* Tipo do setter do estado */

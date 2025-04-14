@@ -1,6 +1,6 @@
 import { useState } from "react"
 import CreateButton from "./../buttons/CreateButton"
-import Filters from "./Filters"
+import Filters from "./buttons/Filters"
 import { LibraryBig, ArrowRight } from "lucide-react"
 
 export default function Sidebar() {
