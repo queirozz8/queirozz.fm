@@ -1,9 +1,9 @@
 import { useState, useRef } from "react"
 import RemoveFilters from "./RemoveFilters"
 /* Função que atualiza uma propriedade específica de um botão do objeto filters */
-import setterFilterProperty from "./../utils/setterFilterProperty"
-import useFilterEffects from "./../hooks/useFilterEffects"
-import { bgColors, textColors } from "./../utils/bgAndTextColors"
+import setterFilterProperty from "../../utils/setterFilterProperty"
+import useFilterEffects from "../../hooks/useFilterEffects"
+import { bgColors, textColors } from "../../utils/bgAndTextColors"
 
 /* Nesse código, eu poderia ter feito uma solução um pouco mais simples,
 criando por exemplo, um estado para cada botão, ao invés de um estado centralizado.
@@ -34,14 +34,22 @@ export default function Filters() {
       bg: bgColors.normal,
       text: textColors.normal,
       title: 'Artistas'
+    },
+
+    albums: {
+      isOn: false,
+      bg: bgColors.normal,
+      text: textColors.normal,
+      title: "Álbuns"
     }
   })
   
   /* Objeto que armazena os valores antigos das propriedades "isOn" dos botões.
   Ela servirá no useEffect, para verificar qual "isOn" dos botões mudou. Para assim mudar os valores das propriedades corretamente. */
-  const prevValuesOfIsOn = useRef<{ playlists: boolean; artists: boolean }>({
+  const prevValuesOfIsOn = useRef<{ playlists: boolean; artists: boolean; albums: boolean; }>({
     playlists: filters.playlists.isOn,
-    artists: filters.artists.isOn
+    artists: filters.artists.isOn,
+    albums: filters.albums.isOn
   })
 
   /* Variável que verifica se algum filtro está ligado. Ela serve para definir se o botão de remover filtros deve ser exibido ou não.
@@ -60,7 +68,7 @@ export default function Filters() {
       {/* { Botão de remover os filtros — Só é exibido quando algum filtro é ativado } */}
       <RemoveFilters filters={filters} setFilters={setFilters} isSomeFilterOn={isSomeFilterOn.current} />
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
         { Object.entries(filters).map(([filter, filterConfig]) => {
           return (
             <button 
