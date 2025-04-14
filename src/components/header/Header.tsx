@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from 'react'
 import CreateButton from './buttons/CreateButton'
 import UserButton from './buttons/UserButton'
 import { House, Compass, Search, CircleArrowDown, Bell, X } from 'lucide-react'
+import spotifyWhite from '@assets/images/spotifyWhite.png'
 
 export default function Header() {
   /* Criação de variáveis contendo o hex das cores mais usadas pelos elementos. 
@@ -24,8 +25,8 @@ export default function Header() {
     <header className='flex justify-between items-center sticky w-screen p-2'>
 
       {/* Ícone branco do Spotify no canto superior esquerdo */}
-      <a className='size-8 ml-5 cursor-pointer z-10' href="#">
-        <img title='Spotify' src="/spotify-white.png" alt="Spotify logo" />
+      <a className='size-8 ml-5 cursor-pointer z-10' href="">
+        <img title='Spotify' src={spotifyWhite} alt="Spotify logo" />
       </a>
 
       {/* Seção de busca que engloba o input central com seus outros botões */}
