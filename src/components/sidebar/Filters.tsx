@@ -1,24 +1,13 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import RemoveFilters from "./buttons/RemoveFilters"
+/* Função que atualiza uma propriedade específica de um botão do objeto filters */
+import setterFilterProperty from "./utils/setterFilterProperty"
+import useFilterEffects from "./hooks/useFilterEffects"
+import { bgColors, textColors } from "./utils/bgAndTextColors"
 
 /* Nesse código, eu poderia ter feito uma solução um pouco mais simples,
 criando por exemplo, um estado para cada botão, ao invés de um estado centralizado.
 Mas eu quis criar uma solução escalável, e não uma solução simples, porém limitada. */
-
-/* Cores de background para os botões de filtro */
-const bgColors = {
-  normal: 'bg-[#2a2a2a]',
-  hovered: 'bg-[#333333]',
-  clicking: 'bg-[#444444]',
-  clicked: 'bg-[#ffffff]',
-  clickingWhenOn: 'bg-[#c6c6c6]'
-} as const
-
-/* Cores de texto para os botões de filtro */
-const textColors = {
-  normal: 'text-zinc-200',
-  clicked: 'text-zinc-700'
-} as const
 
 /* Tipo de cada botão de fitro (que é uma propriedade dentro do objeto filters) */
 export type filter = {
@@ -55,86 +44,15 @@ export default function Filters() {
     artists: filters.artists.isOn
   })
 
-  /* Variável que verifica se algum filtro está ligado. Ela serve para definir se o botão de remover filtros deve ser exibido ou não. */
+  /* Variável que verifica se algum filtro está ligado. Ela serve para definir se o botão de remover filtros deve ser exibido ou não.
+  Ela é um useRef — e não uma variável normal —, porque ela será alterada dentro de um useEffect. */
   const isSomeFilterOn = useRef<boolean>(false)
-  
-
-  /* Função para modificar as propriedades de um determinado filtro */
-  function setterFilterProperty(filter: string, property: string, value: string | boolean) {
-    /* Se um botão for ligado, mas já houver outro botão ligado também, então desativamos o primeiro botão e depois ativamos o atual, normalmente. */
-    if (property === 'isOn' && value === true && isSomeFilterOn.current) {
-      Object.entries(filters).forEach(([previousFilter, filterConfig]) => {
-        if (filterConfig.isOn) {
-          setFilters(prev => (
-            {
-              ...prev,
-              [previousFilter]: {
-                ...prev[previousFilter],
-                isOn: false
-              },
-
-              [filter]: {
-                ...prev[filter],
-                isOn: true
-              }
-            }
-          ))
-        }
-      })
-    } else {
-      setFilters(prev => (
-        {
-          ...prev,
-          [filter]: {
-            ...prev[filter],
-            [property]: value
-          }
-        }
-      ))
-    }
-  }
 
 
   /* UseEffect que é executado quando a propriedade "isOn" de algum dos botões dentro de filters mudam. 
-  Esse useEffect fica responsável de modificar as propriedades bg e text do botão que tiver seu isOn alterado. */
-  useEffect(() => {
-    /* Nessa explicação, os botões de filtro serão chamados somente de "filtros".
-      Dentro desse loop, percorremos todos os filtros. Cada filtro possui um estado isOn, indicando se está ativado ou não.
-      Armazenamos todos os estados anteriores de isOn de cada filtro usando useRef (prevValuesOfIsOn), e comparamos com o estado atual (que está dentro de filters).
-      Se:
-        Se o valor anterior (prevIsOn) for diferente do atual (filters[filter].isOn), significa que esse filtro foi ativado ou desativado recentemente.
-          Nesse caso, aplicamos as alterações visuais (cores de bg e text) a esse filtro. */
-    Object.entries(prevValuesOfIsOn.current).forEach(([filter, prevIsOn]) => {
-      if (prevIsOn !== filters[filter].isOn) {
-        setFilters(prev => {
-          const newFilters = {
-            ...prev,
-            [filter]: {
-              ...prev[filter],
-              bg: prev[filter].isOn ? bgColors.clicked : bgColors.hovered,
-              text: prev[filter].isOn ? textColors.clicked : textColors.normal
-            }
-          }
-
-          const atLeastOneOn = Object.values(newFilters).some(filter => filter.isOn)
-          isSomeFilterOn.current = atLeastOneOn
-          
-          return newFilters
-        })
-      }
-    })
-
-    /* Atualiza os isOn antigos (prevValuesOfIsOn) para ter o valor atual
-    (que se tornará de novo o valor anterior quando esse useEffect for executado novamente;
-    pois se useEffect for executado, significa que algum isOn do objeto filters teve o seu valor alterado;
-    fazendo prevValuesOfIsOn virar o valor antigo daquele isOn novamente) */
-    Object.keys(prevValuesOfIsOn.current).forEach(filter => {
-      prevValuesOfIsOn.current = {
-        ...prevValuesOfIsOn.current,
-        [filter]: filters[filter].isOn
-      }
-    })
-  }, [filters, filters.playlists.isOn, filters.artists.isOn])
+  Esse useEffect fica responsável de modificar as propriedades bg e text do botão que tiver seu isOn alterado.
+  Futuramente ele vai filtrar as playlists/artistas que estiverem na barra lateral */
+  useFilterEffects(filters, setFilters, isSomeFilterOn, prevValuesOfIsOn)
 
   
   return (
@@ -146,10 +64,14 @@ export default function Filters() {
         { Object.entries(filters).map(([filter, filterConfig]) => {
           return (
             <button 
-              onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filter, 'bg', bgColors.hovered) }
-              onPointerDown={ () => filterConfig.isOn ? setterFilterProperty(filter, 'bg', bgColors.clickingWhenOn) : setterFilterProperty(filter, 'bg', bgColors.clicking) }
-              onPointerUp={ () => setterFilterProperty(filter, 'isOn', !filterConfig.isOn) }
-              onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filter, 'bg', bgColors.normal) }
+              onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filter, 'bg', bgColors.hovered, filters, setFilters, isSomeFilterOn) }
+              onPointerDown={ () => (
+                filterConfig.isOn
+                ? setterFilterProperty(filter, 'bg', bgColors.clickingWhenOn, filters, setFilters, isSomeFilterOn) 
+                : setterFilterProperty(filter, 'bg', bgColors.clicking, filters, setFilters, isSomeFilterOn)
+              ) }
+              onPointerUp={ () => setterFilterProperty(filter, 'isOn', !filterConfig.isOn, filters, setFilters, isSomeFilterOn) }
+              onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filter, 'bg', bgColors.normal, filters, setFilters, isSomeFilterOn) }
               className={`flex justify-center items-center relative right-1 w-fit px-3 py-[0.40rem] rounded-4xl 
               text-sm ${filterConfig.text} font-semibold ${filterConfig.bg} transition cursor-pointer`}
               key={filterConfig.title} /* Diferencia ele dos outros botões */
