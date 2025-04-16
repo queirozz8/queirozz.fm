@@ -10,7 +10,7 @@ criando por exemplo, um estado para cada botão, ao invés de um estado centrali
 Mas eu quis criar uma solução escalável, e não uma solução simples, porém limitada. */
 
 /* Tipo de cada botão de fitro (que é uma propriedade dentro do objeto filters) */
-export type filter = {
+export type Filter = {
   isOn: boolean
   bg: 'bg-[#2a2a2a]' | 'bg-[#333333]' | 'bg-[#444444]' | 'bg-[#ffffff]' | 'bg-[#c6c6c6]'
   text: 'text-zinc-200' | 'text-zinc-700'
@@ -21,7 +21,7 @@ export type filter = {
 export default function Filters() {
   /* Estado centralizado que contém todos os botões de filtro.
   Cada propriedade dentro de filters representa um botão. */
-  const [filters, setFilters] = useState<Record<string, filter>>({
+  const [filters, setFilters] = useState<Record<string, Filter>>({
     playlists: {
       isOn: false,
       bg: bgColors.normal,

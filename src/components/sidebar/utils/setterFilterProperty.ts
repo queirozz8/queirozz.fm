@@ -1,8 +1,8 @@
 import { RefObject } from 'react'
-import { filter } from '../buttons/filters/Filters'
+import { Filter } from '../buttons/filters/Filters'
 
 /* Tipo do setter do estado */
-type setFiltersType = React.Dispatch<React.SetStateAction<Record<string, filter>>>
+type setFiltersType = React.Dispatch<React.SetStateAction<Record<string, Filter>>>
 
 /* Função para modificar as propriedades de um determinado filtro */
 export default function setterFilterProperty(
@@ -10,7 +10,7 @@ export default function setterFilterProperty(
   property: string, 
   value: string | boolean,
   /* Outras variáveis que são necessárias para o contexto geral da função, mas não serão modificadas diretamente */
-  filters: Record<string, filter>,
+  filters: Record<string, Filter>,
   setFilters: setFiltersType,
   isSomeFilterOn: RefObject<boolean>) {
 

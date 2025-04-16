@@ -1,12 +1,12 @@
 import { RefObject, useEffect } from "react"
-import { filter } from '../buttons/filters/Filters'
+import { Filter } from '../buttons/filters/Filters'
 import { bgColors, textColors } from "../utils/bgAndTextColors"
 
 /* Tipo do setter do estado */
-type setFiltersType = React.Dispatch<React.SetStateAction<Record<string, filter>>>
+type setFiltersType = React.Dispatch<React.SetStateAction<Record<string, Filter>>>
 
 export default function useFilterEffects(
-  filters: Record<string, filter>,
+  filters: Record<string, Filter>,
   setFilters: setFiltersType,
   isSomeFilterOn: RefObject<boolean>,
   prevValuesOfIsOn: RefObject<object>,

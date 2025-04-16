@@ -4,12 +4,13 @@ import Filters from "./buttons/filters/Filters"
 import CreateItem from "./buttons/items/CreateItem"
 import { LibraryBig, ArrowRight } from "lucide-react"
 
-export type item = {
+export type Item = {
   type: string
-  image: string
   title: string
   author?: string
 }
+
+export type keyItemsType = 'workFolder' | 'programmingDeepFocus' | 'codingMusic' | 'purpleCat' | 'lofiCoding' | 'rainPiano' | 'classicalMusic' | 'oneheart'
 
 export default function Sidebar() {
   /* Criação de variáveis contendo o hex das cores mais usadas pelos elementos. 
@@ -20,66 +21,59 @@ export default function Sidebar() {
   const [libraryColor, setLibraryColor] = useState<string>('#b3b3b3')
   const [showMoreButtonColor, setShowMoreButtonColor] = useState<string>(normalColor)
 
-  const items: Record<string, item> = {
+
+  const items: Record<keyItemsType, Item> = {
     workFolder: {
       type: 'Folder',
-      image: 'FolderImage',
       title: 'Work',
       author: ''
     },
 
     programmingDeepFocus: {
       type: 'Playlist',
-      image: '@assets/images/items-sidebar/programming_deep_focus.jpg',
       title: 'Programming 💻 - Deep Focus',
       author: 'Rickzin'
     },
     
     codingMusic: {
       type: 'Playlist',
-      image: '@assets/images/items-sidebar/coding_music.png',
       title: 'Coding Music 💻 Programming Playlist',
       author: 'Soave'
     },
 
     purpleCat: {
       type: 'Playlist',
-      image: '@assets/images/items-sidebar/purple_cat.png',
       title: 'Purple Cat 💜',
       author: 'Purple Cat'
     },
     
     lofiCoding: {
       type: 'Playlist',
-      image: '@assets/images/items-sidebar/lofi_coding.png',
       title: 'Lofi Coding (beats to chill/relax to)',
       author: 'Retro Jungle'
     },
 
     rainPiano: {
       type: 'Album',
-      image: '@assets/images/items-sidebar/rain_piano.png',
       title: 'Rain Piano Covers',
       author: 'goated.'
     },
 
     classicalMusic: {
       type: 'Playlist',
-      image: '@assets/images/items-sidebar/classical_music.png',
       title: 'Música Clássica Relax Study',
       author: 'Classical Music'
     },
 
     oneheart: {
       type: 'Artist',
-      image: '@assets/images/items-sidebar/oneheart.png',
       title: 'Øneheart',
       author: ''
     },
-  }
+  } as const
 
   return (
-    <aside className="flex flex-col gap-3 relative left-2 p-5 w-[17.5rem] rounded-lg bg-[#121212]">
+    <aside className="flex flex-col gap-3 relative left-2 w-[17.5rem] h-[46.5rem] p-5 rounded-lg bg-[#121212]">
 
       {/* Div que engloba todos os botões superiores da Sidebar (menos os filtros) */}
       <div className="flex justify-between items-center">
