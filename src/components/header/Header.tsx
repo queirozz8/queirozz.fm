@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react'
-import CreateButton from './buttons/CreateButton'
+import CreateButton from '../buttons/CreateButton'
 import UserButton from './buttons/UserButton'
 import { House, Compass, Search, CircleArrowDown, Bell, X } from 'lucide-react'
 import spotifyWhite from '@assets/images/spotify_white.jpg'

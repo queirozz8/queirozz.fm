@@ -20,7 +20,7 @@ export default function CreateButton( {isSidebar}: Props) {
     /* Wrapper para não permitir que o botão de Criar afete a o posicionamento dos elementos ao lado quando ele for hovered. */
     <div 
       onBlur={ () => setIsCreateButtonClicked(false) }
-      className={isSidebar ? '' : 'relative right-[5.1rem] w-28'}
+      className={isSidebar ? 'z-50' : 'relative right-[5.1rem] w-28 z-50'}
     >
 
       {/* Botão de Criar */}
@@ -59,7 +59,7 @@ export default function CreateButton( {isSidebar}: Props) {
           onClick={ () => setIsCreateButtonClicked(false) } /* Evento para computadores */
           onTouchEnd={ () => setIsCreateButtonClicked(false) } /* Evento para dispositivos móveis */
           onPointerLeave={ () => setColorMusicIcon(lightNormalColor) }
-          className='flex items-center gap-2 w-[22rem] p-2 rounded-md bg-[var(--bg-color)] hover:bg-[#3f3e3e] active:bg-[#191818] z-0 group'
+          className='flex items-center gap-2 w-[22rem] p-2 rounded-md bg-[var(--bg-color)] hover:bg-[#3f3e3e] active:bg-[#191818] group'
           type='button'
         >
 
