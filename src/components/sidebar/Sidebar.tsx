@@ -66,7 +66,7 @@ export default function Sidebar() {
     },
 
     oneheart: {
-      type: 'Artist',
+      type: 'Artista',
       title: 'Øneheart',
       author: ''
     },

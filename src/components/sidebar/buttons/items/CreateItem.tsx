@@ -1,5 +1,6 @@
+import { useState } from "react"
 import { Item, keyItemsType } from "../../Sidebar"
-import { Folder } from "lucide-react"
+import { Folder, Pin, ArrowRight } from "lucide-react"
 import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.jpg'
 import codingMusic from '@assets/images/items-sidebar/coding_music.jpg'
 import purpleCat from '@assets/images/items-sidebar/purple_cat.jpg'
@@ -24,12 +25,14 @@ type Props = {
 }
 
 export default function CreateItem({ items }: Props) {
+  const [arrowColor, setArrowColor] = useState('#a6a6a6')
+
   return (
-    <section className="flex flex-col justify-center gap-4">
+    <section className="flex flex-col justify-center gap-3 relative right-2">
       { (Object.entries(items) as [keyItemsType, Item][]).map(([item, itemDetails]) => {
         console.log(imagesAndIcons[item], typeof imagesAndIcons[item]);
         return (
-          <article className="flex gap-2">
+          <button className="flex gap-2 w-64 p-2 rounded-2xl hover:bg-[#1f1f1f] cursor-pointer">
             <div className={`flex justify-center items-center ${typeof imagesAndIcons[item] !== 'string' ? 'size-11' : 'size-fit'} rounded-lg bg-[#282828]`}>
               { 
                 typeof imagesAndIcons[item] !== 'string' ? (
@@ -40,10 +43,26 @@ export default function CreateItem({ items }: Props) {
               }
             </div>
             <div>
-              <h1 className="text-[#c5c5c5]">{itemDetails.title}</h1>
-              <h2 className="text-[#6a6a6a] text-sm">{itemDetails.type} {itemDetails.author && ` • ${itemDetails.author}`}</h2>
+              { 
+                typeof imagesAndIcons[item] !== 'string' ? (
+                  <div 
+                    onPointerOver={ () => setArrowColor('#ffffff') } 
+                    onPointerLeave={ () => setArrowColor('#a6a6a6') }
+                    className="relative"
+                  >
+                    <h1 className="text-start w-[11.7rem] text-[#eeeeee] truncate">Work</h1>
+                    <h2 className="flex gap-1 text-start text-[#ababab] text-sm truncate"><Pin color="#1dd45e" size={18} />15 playlists</h2>
+                    <div className="absolute bottom-3 left-40"><ArrowRight color={arrowColor} size={20} /></div>
+                  </div>
+                ) : (
+                  <>
+                    <h1 className="text-start w-[11.7rem] text-[#eeeeee] truncate">{itemDetails.title}</h1>
+                    <h2 className="text-start text-[#ababab] text-sm truncate">{itemDetails.type} {itemDetails.author && ` • ${itemDetails.author}`}</h2>
+                  </>
+                )
+              }
             </div>
-          </article>
+          </button>
         )
       }) }
     </section>
