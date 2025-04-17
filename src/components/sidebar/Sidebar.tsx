@@ -1,5 +1,5 @@
 import { useState } from "react"
-import CreateButton from "../header/buttons/CreateButton"
+import CreateButton from "../buttons/CreateButton"
 import Filters from "./buttons/filters/Filters"
 import CreateItem from "./buttons/items/CreateItem"
 import { LibraryBig, ArrowRight } from "lucide-react"
@@ -54,7 +54,7 @@ export default function Sidebar() {
     },
 
     rainPiano: {
-      type: 'Album',
+      type: 'Álbum',
       title: 'Rain Piano Covers',
       author: 'goated.'
     },
