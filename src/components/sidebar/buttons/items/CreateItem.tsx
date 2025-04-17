@@ -30,7 +30,6 @@ export default function CreateItem({ items }: Props) {
   return (
     <section className="flex flex-col justify-center gap-3 relative right-2">
       { (Object.entries(items) as [keyItemsType, Item][]).map(([item, itemDetails]) => {
-        console.log(imagesAndIcons[item], typeof imagesAndIcons[item]);
         return (
           <button className="flex gap-2 w-64 p-2 rounded-2xl hover:bg-[#1f1f1f] cursor-pointer">
             <div className={`flex justify-center items-center ${typeof imagesAndIcons[item] !== 'string' ? 'size-11' : 'size-fit'} rounded-lg bg-[#282828]`}>
