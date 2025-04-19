@@ -1,8 +1,8 @@
 import { RefObject } from 'react'
 import { Filter } from '../buttons/filters/Filters'
 
-/* Tipo do setter do estado */
-type setFiltersType = React.Dispatch<React.SetStateAction<Record<string, Filter>>>
+/* Tipo do setter do estado filters */
+export type SetFiltersType = React.Dispatch<React.SetStateAction<Record<string, Filter>>>
 
 /* Função para modificar as propriedades de um determinado filtro */
 export default function setterFilterProperty(
@@ -11,10 +11,10 @@ export default function setterFilterProperty(
   value: string | boolean,
   /* Outras variáveis que são necessárias para o contexto geral da função, mas não serão modificadas diretamente */
   filters: Record<string, Filter>,
-  setFilters: setFiltersType,
+  setFilters: SetFiltersType,
   isSomeFilterOn: RefObject<boolean>) {
 
-  /* Se um botão for ligado, mas já houver outro botão ligado também, então desativamos o primeiro botão e depois ativamos o atual, normalmente. */
+  /* Se um botão for ligado, mas já houver outro botão ligado também, então desativamos o primeiro botão e depois ativamos o atual, simultaneamente. */
   if (property === 'isOn' && value === true && isSomeFilterOn.current) {
     Object.entries(filters).forEach(([previousFilter, filterConfig]) => {
       if (filterConfig.isOn) {
@@ -34,6 +34,7 @@ export default function setterFilterProperty(
         ))
       }
     })
+  /* Se for só um caso normal, onde um botão está sendo ligado ou desligado (quando ele mesmo já estava ligado antes, não outro botão): */
   } else {
     setFilters(prev => (
       {

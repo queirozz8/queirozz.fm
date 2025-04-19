@@ -1,11 +1,11 @@
 import { X } from 'lucide-react'
 import { Filter } from './Filters'
 
-type setFiltersType = React.Dispatch<React.SetStateAction<Record<string, Filter>>>
+type SetFiltersType = React.Dispatch<React.SetStateAction<Record<string, Filter>>>
 
 type Props = {
   filters: Record<string, Filter>
-  setFilters: setFiltersType
+  setFilters: SetFiltersType
   isSomeFilterOn: boolean
 }
 

@@ -1,9 +1,10 @@
 import { useState, useRef } from "react"
 import RemoveFilters from "./RemoveFilters"
+import { Item, SetItemsType, KeyItemsType } from "../../Sidebar"
 /* Função que atualiza uma propriedade específica de um botão do objeto filters */
 import setterFilterProperty from "../../utils/setterFilterProperty"
 import useFilterEffects from "../../hooks/useFilterEffects"
-import { bgColors, textColors } from "../../utils/bgAndTextColors"
+import { bgColors, textColors } from "../../utils/tailwindClasses"
 
 /* Nesse código, eu poderia ter feito uma solução um pouco mais simples,
 criando por exemplo, um estado para cada botão, ao invés de um estado centralizado.
@@ -17,8 +18,13 @@ export type Filter = {
   title: string
 }
 
+type Props = {
+  items: Record<KeyItemsType, Item>
+  setItems: SetItemsType
+}
 
-export default function Filters() {
+
+export default function Filters({ items, setItems }: Props) {
   /* Estado centralizado que contém todos os botões de filtro.
   Cada propriedade dentro de filters representa um botão. */
   const [filters, setFilters] = useState<Record<string, Filter>>({
@@ -60,7 +66,7 @@ export default function Filters() {
   /* UseEffect que é executado quando a propriedade "isOn" de algum dos botões dentro de filters mudam. 
   Esse useEffect fica responsável de modificar as propriedades bg e text do botão que tiver seu isOn alterado.
   Futuramente ele vai filtrar as playlists/artistas que estiverem na barra lateral */
-  useFilterEffects(filters, setFilters, isSomeFilterOn, prevValuesOfIsOn)
+  useFilterEffects(filters, setFilters, isSomeFilterOn, prevValuesOfIsOn, items, setItems)
 
   
   return (

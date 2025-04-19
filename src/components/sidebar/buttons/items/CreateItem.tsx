@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Item, keyItemsType } from "../../Sidebar"
+import { Item, SetItemsType, KeyItemsType } from "../../Sidebar"
 import { Folder, Pin, ArrowRight } from "lucide-react"
 import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.jpg'
 import codingMusic from '@assets/images/items-sidebar/coding_music.jpg'
@@ -22,6 +22,7 @@ const imagesAndIcons = {
 
 type Props = {
   items: Record<string, Item>
+  setItems: SetItemsType
 }
 
 export default function CreateItem({ items }: Props) {
@@ -29,11 +30,11 @@ export default function CreateItem({ items }: Props) {
 
   return (
     <section className="flex flex-col justify-center gap-3 relative right-2">
-      { (Object.entries(items) as [keyItemsType, Item][]).map(([item, itemDetails]) => {
+      { (Object.entries(items) as [KeyItemsType, Item][]).map(([item, itemDetails]) => {
         return (
-          <button className="flex gap-2 w-64 p-2 rounded-2xl hover:bg-[#1f1f1f] cursor-pointer">
+          <button className={itemDetails.class} key={itemDetails.title}>
             <div className={`flex justify-center items-center ${typeof imagesAndIcons[item] !== 'string' ? 'size-11' : 'size-fit'} rounded-lg bg-[#282828]`}>
-              { 
+              {
                 typeof imagesAndIcons[item] !== 'string' ? (
                   <Folder color="#a6a6a6" />
                 ) : (
@@ -44,8 +45,8 @@ export default function CreateItem({ items }: Props) {
             <div>
               { 
                 typeof imagesAndIcons[item] !== 'string' ? (
-                  <div 
-                    onPointerOver={ () => setArrowColor('#ffffff') } 
+                  <div
+                    onPointerOver={ () => setArrowColor('#ffffff') }
                     onPointerLeave={ () => setArrowColor('#a6a6a6') }
                     className="relative"
                   >

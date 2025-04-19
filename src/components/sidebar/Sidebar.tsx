@@ -2,15 +2,26 @@ import { useState } from "react"
 import CreateButton from "../buttons/CreateButton"
 import Filters from "./buttons/filters/Filters"
 import CreateItem from "./buttons/items/CreateItem"
+import { defaultItemClass } from "./utils/tailwindClasses"
 import { LibraryBig, ArrowRight } from "lucide-react"
 
 export type Item = {
-  type: string
+  /* Tipo do item, será mostrado na tela */
+  type: 'Playlist' | 'Artista' | 'Álbum' | 'Folder'
+  /* Nome do item */
   title: string
+  /* Author é opcional, pois quando o item é um artista ou uma pasta, ela não possui autor */
   author?: string
+  /* Classe do Tailwind. Será usada para definir se deverá ser exibida ou não na tela, conforme os filtros */
+  class: string
 }
 
-export type keyItemsType = 'workFolder' | 'programmingDeepFocus' | 'codingMusic' | 'purpleCat' | 'lofiCoding' | 'rainPiano' | 'classicalMusic' | 'oneheart'
+/* Tipo que será passado para outros arquivos. Ele é definido aqui, pois os outros arquivos são filhos dele
+Esse tipo descreve o objeto/estado items */
+export type SetItemsType = React.Dispatch<React.SetStateAction<Record<KeyItemsType, Item>>>
+/* Tipo que também será passado para outros arquivos. Ele descreve as chaves dos itens. */
+export type KeyItemsType = 'workFolder' | 'programmingDeepFocus' | 'codingMusic' | 'purpleCat' | 'lofiCoding' | 'rainPiano' | 'classicalMusic' | 'oneheart'
+
 
 export default function Sidebar() {
   /* Criação de variáveis contendo o hex das cores mais usadas pelos elementos. 
@@ -18,59 +29,72 @@ export default function Sidebar() {
   const normalColor = '#989999'
   const lightNormalColor = '#fffefe'
 
+  /* Cor do botão Sua Biblioteca */
   const [libraryColor, setLibraryColor] = useState<string>('#b3b3b3')
+  /* Cor do botão de expandir a barra lateral (ver mais) */
   const [showMoreButtonColor, setShowMoreButtonColor] = useState<string>(normalColor)
 
 
-  const items: Record<keyItemsType, Item> = {
+  /* Estado centralizado dos itens que compõem a barra lateral */
+  const [items, setItems] = useState<Record<KeyItemsType, Item>>({
     workFolder: {
+      /* Type sendo Folder será substituído para '15 playlists' no futuro.
+      Só defino como Folder inicialmente para ser mais fácil de visualizar. */
       type: 'Folder',
       title: 'Work',
-      author: ''
+      author: '',
+      class: defaultItemClass
     },
 
     programmingDeepFocus: {
       type: 'Playlist',
       title: 'Programming 💻 - Deep Focus',
-      author: 'Rickzin'
+      author: 'Rickzin',
+      class: defaultItemClass
     },
     
     codingMusic: {
       type: 'Playlist',
       title: 'Coding Music 💻 Programming Playlist',
-      author: 'Soave'
+      author: 'Soave',
+      class: defaultItemClass
     },
 
     purpleCat: {
       type: 'Playlist',
       title: 'Purple Cat 💜',
-      author: 'Purple Cat'
+      author: 'Purple Cat',
+      class: defaultItemClass
     },
     
     lofiCoding: {
       type: 'Playlist',
       title: 'Lofi Coding (beats to chill/relax to)',
-      author: 'Retro Jungle'
+      author: 'Retro Jungle',
+      class: defaultItemClass
     },
 
     rainPiano: {
       type: 'Álbum',
       title: 'Rain Piano Covers',
-      author: 'goated.'
+      author: 'goated.',
+      class: defaultItemClass
     },
 
     classicalMusic: {
       type: 'Playlist',
       title: 'Música Clássica Relax Study',
-      author: 'Classical Music'
+      author: 'Classical Music',
+      class: defaultItemClass
     },
 
     oneheart: {
       type: 'Artista',
       title: 'Øneheart',
-      author: ''
+      author: '',
+      class: defaultItemClass
     },
-  } as const
+  })
 
   return (
     <aside className="flex flex-col gap-3 relative left-2 w-[17.5rem] h-[46.5rem] p-5 rounded-lg bg-[#121212]">
@@ -106,9 +130,10 @@ export default function Sidebar() {
         </div>
       </div>
 
-      {/* Filtros */}
-      <Filters />
-      <CreateItem items={items} />
+      {/* Botões de filtros */}
+      <Filters items={items} setItems={setItems} />
+      {/* Itens da barra lateral */}
+      <CreateItem items={items} setItems={setItems} />
     </aside>
   )
 }
