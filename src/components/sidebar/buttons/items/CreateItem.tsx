@@ -21,7 +21,7 @@ const imagesAndIcons = {
 } as const
 
 type Props = {
-  items: Record<string, Item>
+  items: Record<KeyItemsType, Item>
   setItems: SetItemsType
 }
 

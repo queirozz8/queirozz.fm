@@ -1,16 +1,13 @@
 import { RefObject } from 'react'
-import { Filter } from '../buttons/filters/Filters'
-
-/* Tipo do setter do estado filters */
-export type SetFiltersType = React.Dispatch<React.SetStateAction<Record<string, Filter>>>
+import { Filter, KeyFiltersType, SetFiltersType } from '../buttons/filters/Filters'
 
 /* Função para modificar as propriedades de um determinado filtro */
 export default function setterFilterProperty(
-  filter: string, 
-  property: string, 
+  filter: KeyFiltersType, 
+  property: 'isOn' | 'bg' | 'text' | 'title',
   value: string | boolean,
   /* Outras variáveis que são necessárias para o contexto geral da função, mas não serão modificadas diretamente */
-  filters: Record<string, Filter>,
+  filters: Record<KeyFiltersType, Filter>,
   setFilters: SetFiltersType,
   isSomeFilterOn: RefObject<boolean>) {
 

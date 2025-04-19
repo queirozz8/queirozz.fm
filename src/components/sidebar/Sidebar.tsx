@@ -16,11 +16,12 @@ export type Item = {
   class: string
 }
 
-/* Tipo que será passado para outros arquivos. Ele é definido aqui, pois os outros arquivos são filhos dele
-Esse tipo descreve o objeto/estado items */
-export type SetItemsType = React.Dispatch<React.SetStateAction<Record<KeyItemsType, Item>>>
-/* Tipo que também será passado para outros arquivos. Ele descreve as chaves dos itens. */
+/* Tipo que será passado para outros arquivos. Ele é definido aqui pois os outros arquivos são filhos dele. 
+Esse tipo descreve as chaves dos itens. */
 export type KeyItemsType = 'workFolder' | 'programmingDeepFocus' | 'codingMusic' | 'purpleCat' | 'lofiCoding' | 'rainPiano' | 'classicalMusic' | 'oneheart'
+/* Tipo que também será passado para outros arquivos
+Esse tipo descreve o setter do estado items. */
+export type SetItemsType = React.Dispatch<React.SetStateAction<Record<KeyItemsType, Item>>>
 
 
 export default function Sidebar() {
