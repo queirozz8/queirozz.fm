@@ -1,5 +1,5 @@
 import { RefObject } from 'react'
-import { Filter, KeyFiltersType, SetFiltersType } from '../buttons/filters/Filters'
+import { Filter, KeyFiltersType, SetFiltersType } from '../Filters'
 
 /* Função para modificar as propriedades de um determinado filtro */
 export default function setterFilterProperty(

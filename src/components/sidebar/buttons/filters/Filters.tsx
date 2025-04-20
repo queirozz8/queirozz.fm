@@ -1,9 +1,8 @@
 import { useState, useRef } from "react"
-import RemoveFilters from "./RemoveFilters"
 import { Item, KeyItemsType, SetItemsType } from "../../Sidebar"
 /* Função que atualiza uma propriedade específica de um botão do objeto filters */
-import setterFilterProperty from "../../utils/setterFilterProperty"
-import useFilterEffects from "../../hooks/useFilterEffects"
+import setterFilterProperty from "./utils/setterFilterProperty"
+import useFilterEffects from "./hooks/useFilterEffects"
 import { bgColors, textColors } from "../../utils/tailwindClasses"
 
 /* Nesse código, eu poderia ter feito uma solução um pouco mais simples,
@@ -63,7 +62,7 @@ export default function Filters({ items, setItems }: Props) {
     albums: filters.albums.isOn
   })
 
-  /* Variável que verifica se algum filtro está ligado. Ela serve para definir se o botão de remover filtros deve ser exibido ou não.
+  /* Variável que verifica se algum filtro está ligado. Ela serve para impedir que múltiplos botões possam ser ligados.
   Ela é um useRef — e não uma variável normal —, porque ela será alterada dentro de um useEffect. */
   const isSomeFilterOn = useRef<boolean>(false)
 
@@ -75,34 +74,29 @@ export default function Filters({ items, setItems }: Props) {
 
   
   return (
-    <div className="flex items-center gap-3">
-      {/* { Botão de remover os filtros — Só é exibido quando algum filtro é ativado } */}
-      <RemoveFilters filters={filters} setFilters={setFilters} isSomeFilterOn={isSomeFilterOn.current} />
+    <div className="flex items-center gap-2">
+      { Object.entries(filters).map(([filter, filterConfig]) => {
+        /* Assertion types para o TypeScript saber que os tipos estão corretos */
+        const filterTyped = filter as KeyFiltersType
 
-      <div className="flex items-center gap-2">
-        { Object.entries(filters).map(([filter, filterConfig]) => {
-          /* Assertion types para o TypeScript saber que os tipos estão corretos */
-          const filterTyped = filter as KeyFiltersType
-
-          return (
-            <button 
-              onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.hovered, filters, setFilters, isSomeFilterOn) }
-              onPointerDown={ () => (
-                filterConfig.isOn
-                ? setterFilterProperty(filterTyped, 'bg', bgColors.clickingWhenOn, filters, setFilters, isSomeFilterOn) 
-                : setterFilterProperty(filterTyped, 'bg', bgColors.clicking, filters, setFilters, isSomeFilterOn)
-              ) }
-              onPointerUp={ () => setterFilterProperty(filterTyped, 'isOn', !filterConfig.isOn, filters, setFilters, isSomeFilterOn) }
-              onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.normal, filters, setFilters, isSomeFilterOn) }
-              className={`flex justify-center items-center relative right-1 w-fit px-3 py-[0.40rem] rounded-4xl 
-              text-sm ${filterConfig.text} font-semibold ${filterConfig.bg} transition cursor-pointer`}
-              key={filterConfig.title} /* Diferencia ele dos outros botões */
-            >
-              {filterConfig.title}
-            </button>
-          )
-        }) }
-      </div>
+        return (
+          <button 
+            onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.hovered, filters, setFilters, isSomeFilterOn) }
+            onPointerDown={ () => (
+              filterConfig.isOn
+              ? setterFilterProperty(filterTyped, 'bg', bgColors.clickingWhenOn, filters, setFilters, isSomeFilterOn) 
+              : setterFilterProperty(filterTyped, 'bg', bgColors.clicking, filters, setFilters, isSomeFilterOn)
+            ) }
+            onPointerUp={ () => setterFilterProperty(filterTyped, 'isOn', !filterConfig.isOn, filters, setFilters, isSomeFilterOn) }
+            onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.normal, filters, setFilters, isSomeFilterOn) }
+            className={`flex justify-center items-center relative right-1 w-fit px-3 py-[0.40rem] rounded-4xl 
+            text-sm ${filterConfig.text} font-semibold ${filterConfig.bg} transition cursor-pointer`}
+            key={filterConfig.title} /* Diferencia ele dos outros botões */
+          >
+            {filterConfig.title}
+          </button>
+        )
+      }) }
     </div>
   )
 };
