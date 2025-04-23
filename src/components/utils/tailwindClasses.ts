@@ -14,3 +14,7 @@ export const textColors = {
 } as const
 
 export const defaultItemClass = 'flex gap-2 w-64 p-2 rounded-2xl hover:bg-[#1f1f1f] active:bg-black cursor-pointer'
+
+export const normalColor = '#999999'
+export const lightNormalColor = '#ffffff'
+export const clickedColor = '#7a7a7a'

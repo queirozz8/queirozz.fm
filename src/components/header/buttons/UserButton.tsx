@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { User, SquareArrowOutUpRight } from 'lucide-react'
+import { lightNormalColor } from '../../utils/tailwindClasses'
 
 export default function UserButton() {
   const [isUserButtonClicked, setIsUserButtonClicked] = useState<boolean>(false)
-  const lightNormalColor = '#fffefe'
 
   return (
       /* Div que engloba o botão de Usuário e o seu menu */
@@ -29,7 +29,7 @@ export default function UserButton() {
           onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
           onClick={ () => setIsUserButtonClicked(false) } /* Evento para computadores */
           onTouchEnd={ () => setIsUserButtonClicked(false) } /* Evento para dispositivos móveis */
-          className='flex justify-between items-center w-full h-12 pl-[0.40rem] text-sm text-[var(--light-normal-color)] hover:bg-[#3e3e3e] group'
+          className='flex justify-between items-center w-full h-12 pl-[0.40rem] text-sm text-white hover:bg-[#3e3e3e] group'
         >
           <h1>Conta</h1>
           <span> <SquareArrowOutUpRight color={lightNormalColor} size={18} /> </span>
@@ -39,7 +39,7 @@ export default function UserButton() {
           onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
           onClick={ () => setIsUserButtonClicked(false) } /* Evento para computadores */
           onTouchEnd={ () => setIsUserButtonClicked(false) } /* Evento para dispositivos móveis */
-          className='flex items-center w-full h-12 pl-[0.40rem] text-sm text-[var(--light-normal-color)] hover:bg-[#3e3e3e] group'
+          className='flex items-center w-full h-12 pl-[0.40rem] text-sm text-white hover:bg-[#3e3e3e] group'
         >
           <h1 className='group-hover:underline group-active:no-underline'>Perfil</h1>  
         </button></li>
@@ -48,7 +48,7 @@ export default function UserButton() {
           onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
           onClick={ () => setIsUserButtonClicked(false) } /* Evento para computadores */
           onTouchEnd={ () => setIsUserButtonClicked(false) } /* Evento para dispositivos móveis */
-          className='flex justify-between items-center w-full h-12 pl-[0.40rem] text-sm text-[var(--light-normal-color)] hover:bg-[#3e3e3e] group'
+          className='flex justify-between items-center w-full h-12 pl-[0.40rem] text-sm text-white hover:bg-[#3e3e3e] group'
         >
           <h1 className='group-hover:underline group-active:no-underline'>Faça upgrade para o Premium</h1>
           <span> <SquareArrowOutUpRight color={lightNormalColor} size={18} /> </span>
@@ -58,7 +58,7 @@ export default function UserButton() {
           onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
           onClick={ () => setIsUserButtonClicked(false) } /* Evento para computadores */
           onTouchEnd={ () => setIsUserButtonClicked(false) } /* Evento para dispositivos móveis */
-          className='flex justify-between items-center w-full h-12 pl-[0.40rem] text-sm text-[var(--light-normal-color)] hover:bg-[#3e3e3e] group'
+          className='flex justify-between items-center w-full h-12 pl-[0.40rem] text-sm text-white hover:bg-[#3e3e3e] group'
         >
           <h1 className='group-hover:underline group-active:no-underline'>Suporte</h1>
           <span> <SquareArrowOutUpRight color={lightNormalColor} size={18} /> </span>
@@ -68,7 +68,7 @@ export default function UserButton() {
           onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
           onClick={ () => setIsUserButtonClicked(false) } /* Evento para computadores */
           onTouchEnd={ () => setIsUserButtonClicked(false) } /* Evento para dispositivos móveis */
-          className='flex justify-between items-center w-full h-12 pl-[0.40rem] text-sm text-[var(--light-normal-color)] hover:bg-[#3e3e3e] group'
+          className='flex justify-between items-center w-full h-12 pl-[0.40rem] text-sm text-white hover:bg-[#3e3e3e] group'
         >
           <h1 className='group-hover:underline group-active:no-underline'>Baixar</h1>
           <span> <SquareArrowOutUpRight color={lightNormalColor} size={18} /> </span>
@@ -78,7 +78,7 @@ export default function UserButton() {
           onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
           onClick={ () => setIsUserButtonClicked(false) } /* Evento para computadores */
           onTouchEnd={ () => setIsUserButtonClicked(false) } /* Evento para dispositivos móveis */
-          className='flex items-center w-full h-12 pl-[0.40rem] text-sm text-[var(--light-normal-color)] hover:bg-[#3e3e3e] group'
+          className='flex items-center w-full h-12 pl-[0.40rem] text-sm text-white hover:bg-[#3e3e3e] group'
         >
           <h1 className='group-hover:underline group-active:no-underline'>Configurações</h1>
         </button></li>
@@ -92,7 +92,7 @@ export default function UserButton() {
           onPointerDown={ (e) => e.preventDefault() } /* Faz com que a div maior não perca o foco e o menu não desapareça enquanto o usuário não tiver terminado de clicar */
           onClick={ () => setIsUserButtonClicked(false) } /* Evento para computadores */
           onTouchEnd={ () => setIsUserButtonClicked(false) } /* Evento para dispositivos móveis */
-          className='flex items-center w-full h-12 pl-[0.40rem] text-sm text-[var(--light-normal-color)] hover:bg-[#3e3e3e]'
+          className='flex items-center w-full h-12 pl-[0.40rem] text-sm text-white hover:bg-[#3e3e3e]'
         >
           <h1>Sair</h1>
         </button></li>

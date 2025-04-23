@@ -2,7 +2,7 @@ import { useEffect, useRef, RefObject } from "react"
 import setterItems from "../../items/utils/setterItems"
 import { Filter, KeyFiltersType, SetFiltersType } from '../../filters/Filters'
 import { Item, KeyItemsType, SetItemsType } from "../../../Sidebar"
-import { bgColors, textColors } from "../../../utils/tailwindClasses"
+import { bgColors, textColors } from "../../../../utils/tailwindClasses"
 
 export default function useFilterEffects(
   filters: Record<KeyFiltersType, Filter>,

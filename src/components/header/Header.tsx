@@ -3,14 +3,9 @@ import CreateButton from '../buttons/CreateButton'
 import UserButton from './buttons/UserButton'
 import { House, Compass, Search, CircleArrowDown, Bell, X } from 'lucide-react'
 import spotifyWhite from '@assets/images/spotify_white.jpg'
+import { normalColor, lightNormalColor, clickedColor } from '../utils/tailwindClasses'
 
 export default function Header() {
-  /* Criação de variáveis contendo o hex das cores mais usadas pelos elementos. 
-  Vale somente para o TypeScript */
-  const normalColor = '#989999'
-  const lightNormalColor = '#fffefe'
-  const clickedColor = '#7a7a7a'
-
   /* Estados dos elementos */
   const [colorHouseButton, setColorHouseButton] = useState<string>(normalColor)
   const [colorSearchButton, setColorSearchButton] = useState<string>('#b3b3b3')
@@ -125,7 +120,7 @@ export default function Header() {
             onPointerDown={ () => setColorInstallButton(clickedColor) }
             onPointerUp={ () => setColorInstallButton(lightNormalColor) }
             className='flex justify-center items-center gap-[0.5rem] relative right-1 text-[#a1a1a1] text-sm font-extrabold 
-            hover:scale-105 hover:text-[var(--light-normal-color)] active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-2px]'
+            hover:scale-105 hover:text-white active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-2px]'
             href='#'
           >
             <span> <CircleArrowDown color={colorInstallButton} size={17} /> </span>

@@ -2,8 +2,9 @@ import { useState } from "react"
 import CreateButton from "../buttons/CreateButton"
 import Filters from "./buttons/filters/Filters"
 import CreateItem from "./buttons/items/CreateItem"
-import { defaultItemClass } from "./utils/tailwindClasses"
+import { defaultItemClass } from "../utils/tailwindClasses"
 import { LibraryBig, ArrowRight } from "lucide-react"
+import { normalColor, lightNormalColor } from "../utils/tailwindClasses"
 
 export type Item = {
   /* Tipo do item, será mostrado na tela */
@@ -25,11 +26,6 @@ export type SetItemsType = React.Dispatch<React.SetStateAction<Record<KeyItemsTy
 
 
 export default function Sidebar() {
-  /* Criação de variáveis contendo o hex das cores mais usadas pelos elementos. 
-  Vale somente para o TypeScript */
-  const normalColor = '#989999'
-  const lightNormalColor = '#fffefe'
-
   /* Cor do botão Sua Biblioteca */
   const [libraryColor, setLibraryColor] = useState<string>('#b3b3b3')
   /* Cor do botão de expandir a barra lateral (ver mais) */
@@ -111,7 +107,7 @@ export default function Sidebar() {
           title="Ocultar sua biblioteca"
         >
           <LibraryBig color={libraryColor} />
-          <h1 className="text-zinc-300 group-hover:text-[var(--light-normal-color)] font-extrabold">Sua Biblioteca</h1>
+          <h1 className="text-zinc-300 group-hover:text-white font-extrabold">Sua Biblioteca</h1>
         </button>
 
         {/* Div que engloba o botão de criar e o botão de mostrar mais */}

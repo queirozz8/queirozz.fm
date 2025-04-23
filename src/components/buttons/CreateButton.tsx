@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus, Music, Blend, Folder } from "lucide-react";
+import { normalColor, lightNormalColor } from "../utils/tailwindClasses";
 
 type Props = {
   isSidebar: boolean
@@ -8,9 +9,6 @@ type Props = {
 export default function CreateButton( {isSidebar}: Props) {
   const [isCreateButtonClicked, setIsCreateButtonClicked] = useState<boolean>(false)
   const [colorCreateButton, setColorCreateButton] = useState<string>('#b3b3b3')
-  
-  const normalColor = '#989999'
-  const lightNormalColor = '#fffefe'
 
   const [colorMusicIcon, setColorMusicIcon] = useState<string>(lightNormalColor)
   const [colorBlendIcon, setColorBlendIcon] = useState<string>(lightNormalColor)
@@ -39,7 +37,7 @@ export default function CreateButton( {isSidebar}: Props) {
           size={isSidebar ? 24 : 33}
           strokeWidth={isSidebar ? 1.7 : 1.5}
         />
-        <span className={`w-0 text-[var(--light-normal-color)]
+        <span className={`w-0 text-white
           ${!isSidebar && 'group-hover:opacity-100 group-hover:text-base'} ${!isSidebar && isCreateButtonClicked ? 'opacity-100 text-base' : 'opacity-0 text-[0px]'} transition`}>
             Criar
         </span>
@@ -69,7 +67,7 @@ export default function CreateButton( {isSidebar}: Props) {
           </div>
 
           <span> {/* Título e descrição */}
-            <h1 className='flex items-center gap-2 text-[var(--light-normal-color)] font-bold'>Playlist</h1>
+            <h1 className='flex items-center gap-2 text-white font-bold'>Playlist</h1>
             <p className='text-sm text-[var(--normal-color)]'>Crie uma playlist com músicas ou episódios</p>
           </span>
         </button></li>
@@ -96,7 +94,7 @@ export default function CreateButton( {isSidebar}: Props) {
           </div>
 
           <span> {/* Título e descrição */}
-            <h1 className='flex items-center gap-2 text-[var(--light-normal-color)] font-bold'>Match</h1>
+            <h1 className='flex items-center gap-2 text-white font-bold'>Match</h1>
             <p className='text-sm text-[var(--normal-color)]'>Mistre seu gosto musical com o da galera</p>
           </span>
         </button></li>
@@ -118,7 +116,7 @@ export default function CreateButton( {isSidebar}: Props) {
           </div>
 
           <span> {/* Título e descrição */}
-            <h1 className='flex items-center gap-2 text-[var(--light-normal-color)] font-bold'>Pasta</h1>
+            <h1 className='flex items-center gap-2 text-white font-bold'>Pasta</h1>
             <p className='text-sm text-[var(--normal-color)]'>Organize suas playlists</p>
           </span>
         </button></li>

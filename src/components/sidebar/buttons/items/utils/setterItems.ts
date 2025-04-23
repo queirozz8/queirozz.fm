@@ -1,7 +1,7 @@
 import { RefObject } from "react"
 import { Item, SetItemsType, KeyItemsType } from "../../../Sidebar"
 import { Filter, KeyFiltersType } from "../../filters/Filters"
-import { defaultItemClass } from "../../../utils/tailwindClasses"
+import { defaultItemClass } from "../../../../utils/tailwindClasses"
 
 export default function setterItems(
   filters: Record<KeyFiltersType, Filter>,
