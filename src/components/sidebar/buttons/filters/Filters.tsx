@@ -118,7 +118,8 @@ export default function Filters({ items, setItems }: Props) {
         </div>
 
         <input
-          className={`${searchIsOn ? 'opacity-100' : 'opacity-0 right-96'} relative right-10 p-1 pl-11 rounded-xl bg-[#2a2a2a] placeholder:text-sm placeholder:text-zinc-300 transition-all`}
+          className={`${searchIsOn ? 'opacity-100' : 'opacity-0 right-96'} relative w-56 right-10 p-1 pl-11 rounded-xl text-zinc-300 bg-[#2a2a2a]
+          placeholder:text-sm placeholder:text-zinc-300 transition-all focus:outline-none focus:ring-0`}
           type="text"
           placeholder="Buscar em Sua Biblioteca"
           id="search-items"
@@ -128,12 +129,15 @@ export default function Filters({ items, setItems }: Props) {
         <div
           onPointerOver={ () => colorOrderButton !== clickedColor && setColorOrderButton(lightNormalColor) }
           onPointerDown={ () => setColorOrderButton(clickedColor) }
-          onPointerUp={ () => setColorOrderButton(lightNormalColor) }
+          onPointerUp={ () => {
+            setColorOrderButton(lightNormalColor)
+            setSearchIsOn(false)
+          } }
           onPointerLeave={ () => setColorOrderButton(normalColor) } 
-          className="flex justify-center items-center gap-2 relative right-[8.3rem] w-fit text-[var(--normal-color)]
-          hover:text-white hover:scale-105 active:scale-95 active:text-[#7a7a7a] transition cursor-pointer"
+          className={`flex justify-center items-center gap-2 relative ${searchIsOn ? 'right-[1.90rem]' : 'right-[6.5rem]'} w-fit text-[var(--normal-color)]
+          hover:text-white hover:scale-105 active:scale-95 active:text-[#7a7a7a] transition-transform cursor-pointer`}
         >
-          <p className="select-none">Recentes</p>
+          <p className={`${searchIsOn ? 'hidden' : 'inline'} select-none`}>Recentes</p>
           <List color={colorOrderButton} size={20} />
         </div>
       </div>
