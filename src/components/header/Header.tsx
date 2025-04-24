@@ -46,7 +46,7 @@ export default function Header() {
           onPointerLeave={ () => setColorSearchButton(normalColor) } 
           className='relative left-4 w-0 cursor-pointer' 
           title='Buscar' 
-          htmlFor="search"
+          htmlFor="search-music"
         > 
           <Search color={colorSearchButton} />
         </label>
@@ -59,7 +59,7 @@ export default function Header() {
           placeholder:text-[#b3b3b3] duration-500 [&:hover,&:focus]:bg-[#2b2b2a] [&:hover,&:focus]:border-[#3d3c3d] transition-all'
           placeholder="O que você quer ouvir?"
           type="text" 
-          id="search" 
+          id="search-music" 
         />
 
         {/* Div dos outros botões adicionais do input */}

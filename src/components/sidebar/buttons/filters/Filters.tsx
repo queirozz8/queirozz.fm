@@ -110,9 +110,9 @@ export default function Filters({ items, setItems }: Props) {
           onClick={ () => setSearchIsOn(prev => !prev) }
           onTouchEnd={ () => setSearchIsOn(prev => !prev) }
           onPointerLeave={ () => setSearchButtonColor(normalColor) }
-          className="size-fit p-[6px] rounded-4xl bg-transparent hover:bg-[#2a2a2a] z-50 cursor-pointer"
+          className="size-fit p-[6px] rounded-4xl bg-transparent hover:bg-[#2a2a2a] z-50 transition cursor-pointer"
         >
-          <label className="cursor-pointer" htmlFor="search">
+          <label className="cursor-pointer" htmlFor="search-items">
             <Search color={searchButtonColor} size={20} />
           </label>
         </div>
@@ -121,9 +121,10 @@ export default function Filters({ items, setItems }: Props) {
           className={`${searchIsOn ? 'opacity-100' : 'opacity-0 right-96'} relative right-10 p-1 pl-11 rounded-xl bg-[#2a2a2a] placeholder:text-sm placeholder:text-zinc-300 transition-all`}
           type="text"
           placeholder="Buscar em Sua Biblioteca"
-          id="search"
+          id="search-items"
         />
 
+        {/* Botão de ordem dos itens da sidebar */}
         <div
           onPointerOver={ () => colorOrderButton !== clickedColor && setColorOrderButton(lightNormalColor) }
           onPointerDown={ () => setColorOrderButton(clickedColor) }
