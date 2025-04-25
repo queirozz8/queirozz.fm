@@ -107,7 +107,7 @@ export default function Sidebar() {
           title="Ocultar sua biblioteca"
         >
           <LibraryBig color={libraryColor} />
-          <h1 className="text-zinc-300 group-hover:text-white font-extrabold">Sua Biblioteca</h1>
+          <h1 className="text-zinc-300 group-hover:text-white font-extrabold select-none">Sua Biblioteca</h1>
         </button>
 
         {/* Div que engloba o botão de criar e o botão de mostrar mais */}

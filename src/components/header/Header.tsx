@@ -1,7 +1,8 @@
 import { useState, ChangeEvent } from 'react'
 import CreateButton from '../buttons/CreateButton'
+import ClearButton from '../buttons/ClearButton'
 import UserButton from './buttons/UserButton'
-import { House, Compass, Search, CircleArrowDown, Bell, X } from 'lucide-react'
+import { House, Compass, Search, CircleArrowDown, Bell } from 'lucide-react'
 import spotifyWhite from '@assets/images/spotify_white.jpg'
 import { normalColor, lightNormalColor, clickedColor } from '../utils/tailwindClasses'
 
@@ -20,12 +21,12 @@ export default function Header() {
     <header className='flex justify-between items-center sticky w-screen p-2'>
 
       {/* Ícone branco do Spotify no canto superior esquerdo */}
-      <a className='size-8 ml-5 cursor-pointer z-10' href="">
+      <a className='size-8 ml-5 cursor-pointer z-10 select-none' href="">
         <img title='Spotify' src={spotifyWhite} alt="Spotify logo" />
       </a>
 
       {/* Seção de busca que engloba o input central com seus outros botões */}
-      <search className='flex justify-center items-center gap-1 absolute left-[5.1rem] w-screen'>
+      <search className='flex justify-center items-center gap-1 absolute left-[3.7rem] w-screen'>
         
         {/* Botão de Início */}
         <button
@@ -56,23 +57,19 @@ export default function Header() {
           onChange={e => handleInputChange(e)}
           value={inputValue}
           className='w-[27.1rem] h-12 p-3 pt-3 pr-24 pl-12 border border-[#1f1f1f] rounded-3xl text-zinc-100 bg-[#1f1f1f]
-          placeholder:text-[#b3b3b3] duration-500 [&:hover,&:focus]:bg-[#2b2b2a] [&:hover,&:focus]:border-[#3d3c3d] transition-all'
+          placeholder:text-[#b3b3b3] duration-500 [&:hover,&:focus]:bg-[#2b2b2a] [&:hover,&:focus]:border-[#3d3c3d] transition-all placeholder:select-none'
           placeholder="O que você quer ouvir?"
           type="text" 
           id="search-music" 
         />
 
         {/* Div dos outros botões adicionais do input */}
-        <div className='flex justify-center items-center gap-3 relative right-[6.3rem]' title='Navegar'>
+        <div className='flex justify-center items-center gap-3 relative right-[3.5rem]' title='Navegar'>
 
-          {/* Botão de apagar tudo */}
-          <button 
-            onClick={ () => setInputValue('') } 
-            className={`${inputValue !== '' ? 'opacity-100' : 'opacity-0'} transition cursor-pointer`} 
-            type='button'
-          >
-            <X color={normalColor} size={30} strokeWidth={1.5} />
-          </button>
+          <div className='flex items-center absolute right-12'>
+            {/* Botão de apagar tudo */}
+            <ClearButton inputValue={inputValue} setInputValue={setInputValue} isSidebar={false} />
+          </div>
 
           {/* Linha vertical que separa o botão de apagar tudo do botão de Navegar */}
           <svg xmlns="http://www.w3.org/2000/svg" width="1" height="26">
@@ -94,7 +91,9 @@ export default function Header() {
         </div>
 
         {/* Botão de Criar com seu respectivo menu */}
-        <CreateButton isSidebar={false} />
+        <div className='relative left-[2.6rem]'>
+          <CreateButton isSidebar={false} />
+        </div>
       </search>
 
       {/* Seção dos outros botões do Header. Engloba:
@@ -108,7 +107,8 @@ export default function Header() {
 
           {/* Botão de "Ver planos Premium" */}
           <button className='flex justify-center items-center w-[10.2rem] h-8 p-4 rounded-3xl text-sm font-extrabold bg-white 
-            hover:scale-105 active:scale-95 active:bg-[#c6c6c7] transition cursor-pointer [word-spacing:-2px]' type='button'
+            hover:scale-105 active:scale-95 active:bg-[#c6c6c7] transition cursor-pointer [word-spacing:-2px] select-none' 
+            type='button'
           >
             Ver planos Premium
           </button>
@@ -120,7 +120,7 @@ export default function Header() {
             onPointerDown={ () => setColorInstallButton(clickedColor) }
             onPointerUp={ () => setColorInstallButton(lightNormalColor) }
             className='flex justify-center items-center gap-[0.5rem] relative right-1 text-[#a1a1a1] text-sm font-extrabold 
-            hover:scale-105 hover:text-white active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-2px]'
+            hover:scale-105 hover:text-white active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-2px] select-none'
             href='#'
           >
             <span> <CircleArrowDown color={colorInstallButton} size={17} /> </span>
