@@ -47,7 +47,7 @@ export default function SearchInput() {
         onPointerDown={ () => setColorOrderButton(clickedColor) }
         onPointerUp={ () => {
           setColorOrderButton(lightNormalColor)
-          if (inputValue === '') setSearchIsOn(false)
+          if (!inputValue) setSearchIsOn(false)
         } }
         onPointerLeave={ () => setColorOrderButton(normalColor) } 
         className={`flex justify-center items-center gap-2 relative ${searchIsOn ? 'right-[1.90rem]' : 'right-[6.5rem]'} w-fit text-[var(--normal-color)]
