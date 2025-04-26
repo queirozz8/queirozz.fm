@@ -1,6 +1,7 @@
 import { useState } from "react"
 import CreateButton from "../buttons/CreateButton"
 import Filters from "./buttons/filters/Filters"
+import SearchInput from "./searchInput/SearchInput"
 import CreateItem from "./buttons/items/CreateItem"
 import { defaultItemClass } from "../utils/tailwindClasses"
 import { LibraryBig, ArrowRight } from "lucide-react"
@@ -129,8 +130,10 @@ export default function Sidebar() {
 
       {/* Botões de filtros */}
       <Filters items={items} setItems={setItems} />
+      {/* Input de busca dos itens */}
+      <SearchInput items={items} setItems={setItems} />
       {/* Itens da barra lateral */}
-      <CreateItem items={items} setItems={setItems} />
+      <CreateItem items={items} />
     </aside>
   )
 }

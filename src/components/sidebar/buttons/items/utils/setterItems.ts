@@ -20,6 +20,7 @@ export default function setterItems(
     /* Itera pelos itens, atualizando a classe com base no filtro ligado */
     Object.entries(items).forEach(([item, itemDetails]) => {
       setItems(prev => {
+        /* Assertion types para o TypeScript saber que os tipos estão corretos */
         const itemTyped = item as keyof typeof prev
 
         return {

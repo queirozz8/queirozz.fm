@@ -4,7 +4,6 @@ import { Item, KeyItemsType, SetItemsType } from "../../Sidebar"
 import setterFilterProperty from "./utils/setterFilterProperty"
 import useFilterEffects from "./hooks/useFilterEffects"
 import { bgColors, textColors } from "../../../utils/tailwindClasses"
-import SearchInput from "./searchInput/SearchInput"
 
 /* Nesse código, eu poderia ter feito uma solução um pouco mais simples,
 criando por exemplo, um estado para cada botão, ao invés de um estado centralizado.
@@ -100,9 +99,6 @@ export default function Filters({ items, setItems }: Props) {
           )
         }) }
       </div>
-
-      {/* Input de busca dos itens */}
-      <SearchInput />
     </>
   )
 };

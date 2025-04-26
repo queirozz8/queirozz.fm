@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Item, SetItemsType, KeyItemsType } from "../../Sidebar"
+import { Item, KeyItemsType } from "../../Sidebar"
 import { Folder, Pin, ArrowRight } from "lucide-react"
 import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.jpg'
 import codingMusic from '@assets/images/items-sidebar/coding_music.jpg'
@@ -22,7 +22,6 @@ const imagesAndIcons = {
 
 type Props = {
   items: Record<KeyItemsType, Item>
-  setItems: SetItemsType
 }
 
 export default function CreateItem({ items }: Props) {
