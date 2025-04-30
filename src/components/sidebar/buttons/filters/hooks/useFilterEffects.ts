@@ -1,5 +1,6 @@
-import { useEffect, useRef, RefObject } from "react"
+import { useEffect, RefObject } from "react"
 import setterItems from "../../items/utils/setterItems"
+import { useCurrentFilterOn } from "../../../../../contexts/currentFilterOnContext"
 import { Filter, KeyFiltersType, SetFiltersType } from '../../filters/Filters'
 import { Item, KeyItemsType, SetItemsType } from "../../../Sidebar"
 import { bgColors, textColors } from "../../../../utils/tailwindClasses"
@@ -10,10 +11,11 @@ export default function useFilterEffects(
   isSomeFilterOn: RefObject<boolean>,
   prevValuesOfIsOn: RefObject<Record<KeyFiltersType, boolean>>,
   items: Record<KeyItemsType, Item>,
-  setItems: SetItemsType
+  setItems: SetItemsType,
 ) {
 
-  const currentFilterOn = useRef<'Playlist' | 'Artista' | 'Álbum' | ''>('')
+  const currentFilterOn = useCurrentFilterOn()
+
 
   useEffect(() => {
     /* Se o valor anterior (prevIsOn) for diferente do atual (filters[filter].isOn):
@@ -59,5 +61,5 @@ export default function useFilterEffects(
         [filter]: filters[filterTyped].isOn
       }
     })
-  }, [filters, setFilters, filters.playlists.isOn, filters.artists.isOn, isSomeFilterOn, prevValuesOfIsOn, items, setItems])
+  }, [filters, setFilters, filters.playlists.isOn, filters.artists.isOn, isSomeFilterOn, prevValuesOfIsOn, items, setItems, currentFilterOn])
 };

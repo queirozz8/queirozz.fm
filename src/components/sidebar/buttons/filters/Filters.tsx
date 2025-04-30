@@ -67,8 +67,8 @@ export default function Filters({ items, setItems }: Props) {
   const isSomeFilterOn = useRef<boolean>(false)
 
   /* UseEffect que é executado quando a propriedade "isOn" de algum dos botões dentro de filters mudam. 
-  Esse useEffect fica responsável de modificar as propriedades bg e text do botão que tiver seu isOn alterado.
-  Futuramente ele vai filtrar as playlists/artistas que estiverem na barra lateral */
+  Esse useEffect fica responsável de modificar as propriedades bg e text do botão que tiver seu isOn alterado,
+  e filtrar os itens na barra lateral. */
   useFilterEffects(filters, setFilters, isSomeFilterOn, prevValuesOfIsOn, items, setItems)
   
   return (

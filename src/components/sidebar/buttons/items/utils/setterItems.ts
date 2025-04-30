@@ -1,6 +1,7 @@
 import { RefObject } from "react"
 import { Item, SetItemsType, KeyItemsType } from "../../../Sidebar"
 import { Filter, KeyFiltersType } from "../../filters/Filters"
+import { currentFilterOnType } from './../../../../../contexts/currentFilterOnContext';
 import { defaultItemClass } from "../../../../utils/tailwindClasses"
 
 export default function setterItems(
@@ -9,9 +10,9 @@ export default function setterItems(
   isOn: boolean,
   items: Record<KeyItemsType, Item>,
   setItems: SetItemsType,
-  currentFilterOn: RefObject<'Playlist' | 'Artista' | 'Álbum' | ''>) {
+  currentFilterOn: RefObject<currentFilterOnType> | null) {
   /* Se o botão foi ativado: */
-  if (isOn) {
+  if (isOn && currentFilterOn?.current) {
     /* Define qual foi o filtro ativado, baseado no título do filtro (plural) e no tipo do item (singular) */
     if (filters[filter].title.startsWith('Playlist')) currentFilterOn.current = 'Playlist'
     else if (filters[filter].title.startsWith('Artista')) currentFilterOn.current = 'Artista'
