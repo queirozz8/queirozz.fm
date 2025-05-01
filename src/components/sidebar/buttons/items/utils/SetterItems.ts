@@ -1,23 +1,21 @@
-import { RefObject } from "react"
+import { useEffect } from "react"
 import { Item, SetItemsType, KeyItemsType } from "../../../Sidebar"
 import { Filter, KeyFiltersType } from "../../filters/Filters"
-import { currentFilterOnType } from './../../../../../contexts/currentFilterOnContext';
+import { CurrentFilterOnType, CurrentFilterOnSetterType } from '../../../../../contexts/CurrentFilterOnContext';
 import { defaultItemClass } from "../../../../utils/tailwindClasses"
 
-export default function setterItems(
+export default function SetterItems(
   filters: Record<KeyFiltersType, Filter>,
   filter: KeyFiltersType,
   isOn: boolean,
   items: Record<KeyItemsType, Item>,
   setItems: SetItemsType,
-  currentFilterOn: RefObject<currentFilterOnType> | null) {
-  /* Se o botão foi ativado: */
-  if (isOn && currentFilterOn?.current) {
-    /* Define qual foi o filtro ativado, baseado no título do filtro (plural) e no tipo do item (singular) */
-    if (filters[filter].title.startsWith('Playlist')) currentFilterOn.current = 'Playlist'
-    else if (filters[filter].title.startsWith('Artista')) currentFilterOn.current = 'Artista'
-    else if (filters[filter].title.startsWith('Álbu')) currentFilterOn.current = 'Álbum'
-    
+  currentFilterOn: CurrentFilterOnType,
+  setCurrentFilterOn: CurrentFilterOnSetterType) {
+  
+  /* UseEffect que será executado quando o filtro atual ligado mudar */
+  useEffect(() => {
+    console.log(currentFilterOn);
     /* Itera pelos itens, atualizando a classe com base no filtro ligado */
     Object.entries(items).forEach(([item, itemDetails]) => {
       setItems(prev => {
@@ -28,13 +26,25 @@ export default function setterItems(
           ...prev,
           [itemTyped]: {
             ...prev[itemTyped],
-            class: itemDetails.type !== currentFilterOn.current
+            class: itemDetails.type !== currentFilterOn
               ? defaultItemClass.replace('flex gap-2', 'hidden') // Esconde se for de tipo diferente
               : defaultItemClass // Mostra se for do mesmo tipo
           }
         }
       })
     })
+  }, [items, setItems, currentFilterOn])
+  
+
+  /* Se o botão foi ativado: */
+  if (isOn) {
+    /* Define qual foi o filtro ativado, baseado no título do filtro (plural) e no tipo do item (singular) */
+    if (filters[filter].title.startsWith('Playlist')) setCurrentFilterOn('Playlist')
+    else if (filters[filter].title.startsWith('Artista')) setCurrentFilterOn('Artista')
+    else if (filters[filter].title.startsWith('Álbu')) setCurrentFilterOn('Álbum')
+    
+    /* === UseEffect no começo do arquivo será executado === */
+
   /* Se o botão foi desativado: */
   } else {
     /* Como eu faço um forEach, se essas verificações não existissem e eu ativasse, por exemplo, o filtro de artistas e depois ativar o da playlist, ele faria isso:

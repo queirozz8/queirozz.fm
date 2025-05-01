@@ -1,5 +1,6 @@
 import { RefObject, useEffect } from 'react';
 import { Item, KeyItemsType, SetItemsType } from './../../Sidebar';
+import { UseCurrentFilterOn } from '../../../../contexts/CurrentFilterOnContext';
 import { defaultItemClass } from './../../../utils/tailwindClasses';
 
 
@@ -9,6 +10,7 @@ export default function useSearchItems(
   setItems: SetItemsType,
   isFirstRender: RefObject<boolean>
 ) {
+  const {currentFilterOn, setCurrentFilterOn} = UseCurrentFilterOn()
   useEffect(() => {
     /* Debounce para evitar ficar re-renderizando excessivamente */
     const debounce = setTimeout(() => {
@@ -60,4 +62,8 @@ export default function useSearchItems(
     As chaves de items (o motivo pelo qual estamos usando ele dentro do useEffect) são fixas, então também é seguro desabilitar. */
     // eslint-disable-next-line
   }, [inputValue])
+
+  useEffect(() => {
+    console.log(currentFilterOn);
+  }, [currentFilterOn, setCurrentFilterOn])
 };

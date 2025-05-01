@@ -1,6 +1,6 @@
 import { useEffect, RefObject } from "react"
-import setterItems from "../../items/utils/setterItems"
-import { useCurrentFilterOn } from "../../../../../contexts/currentFilterOnContext"
+import setterItems from "../../items/utils/SetterItems"
+import { UseCurrentFilterOn } from "../../../../../contexts/CurrentFilterOnContext"
 import { Filter, KeyFiltersType, SetFiltersType } from '../../filters/Filters'
 import { Item, KeyItemsType, SetItemsType } from "../../../Sidebar"
 import { bgColors, textColors } from "../../../../utils/tailwindClasses"
@@ -14,7 +14,7 @@ export default function useFilterEffects(
   setItems: SetItemsType,
 ) {
 
-  const currentFilterOn = useCurrentFilterOn()
+  const { currentFilterOn, setCurrentFilterOn } = UseCurrentFilterOn()
 
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function useFilterEffects(
 
         /* Aqui não tem problema em pegar um valor de um estado logo depois de ter modificado ele;
         pois as propriedades que mudaram e as propriedades que estão sendo passadas para a função são diferentes. */
-        setterItems(filters, filterTyped, filters[filterTyped].isOn, items, setItems, currentFilterOn)
+        setterItems(filters, filterTyped, filters[filterTyped].isOn, items, setItems, currentFilterOn, setCurrentFilterOn)
       }
     })
 
@@ -61,5 +61,5 @@ export default function useFilterEffects(
         [filter]: filters[filterTyped].isOn
       }
     })
-  }, [filters, setFilters, filters.playlists.isOn, filters.artists.isOn, isSomeFilterOn, prevValuesOfIsOn, items, setItems, currentFilterOn])
+  }, [filters, setFilters, filters.playlists.isOn, filters.artists.isOn, isSomeFilterOn, prevValuesOfIsOn, items, setItems, currentFilterOn, setCurrentFilterOn])
 };

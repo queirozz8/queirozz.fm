@@ -2,7 +2,7 @@ import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Footer from './components/Footer'
 /* Variável de contexto global que será usada em múltiplos arquivos */
-import { CurrentFilterOnProvider } from './contexts/currentFilterOnContext'
+import { CurrentFilterOnProvider } from './contexts/CurrentFilterOnContext'
 
 export default function App() {
   return (
