@@ -1,7 +1,6 @@
-import { useEffect } from "react"
 import { Item, SetItemsType, KeyItemsType } from "../../../Sidebar"
 import { Filter, KeyFiltersType } from "../../filters/Filters"
-import { CurrentFilterOnType, CurrentFilterOnSetterType } from '../../../../../contexts/CurrentFilterOnContext';
+import { CurrentFilterOnSetterType } from '../../../../../contexts/CurrentFilterOnContext';
 import { defaultItemClass } from "../../../../utils/tailwindClasses"
 
 export default function SetterItems(
@@ -10,47 +9,25 @@ export default function SetterItems(
   isOn: boolean,
   items: Record<KeyItemsType, Item>,
   setItems: SetItemsType,
-  currentFilterOn: CurrentFilterOnType,
   setCurrentFilterOn: CurrentFilterOnSetterType) {
-  
-  /* UseEffect que será executado quando o filtro atual ligado mudar */
-  useEffect(() => {
-    console.log(currentFilterOn);
-    /* Itera pelos itens, atualizando a classe com base no filtro ligado */
-    Object.entries(items).forEach(([item, itemDetails]) => {
-      setItems(prev => {
-        /* Assertion types para o TypeScript saber que os tipos estão corretos */
-        const itemTyped = item as keyof typeof prev
-
-        return {
-          ...prev,
-          [itemTyped]: {
-            ...prev[itemTyped],
-            class: itemDetails.type !== currentFilterOn
-              ? defaultItemClass.replace('flex gap-2', 'hidden') // Esconde se for de tipo diferente
-              : defaultItemClass // Mostra se for do mesmo tipo
-          }
-        }
-      })
-    })
-  }, [items, setItems, currentFilterOn])
-  
-
   /* Se o botão foi ativado: */
   if (isOn) {
     /* Define qual foi o filtro ativado, baseado no título do filtro (plural) e no tipo do item (singular) */
-    if (filters[filter].title.startsWith('Playlist')) setCurrentFilterOn('Playlist')
-    else if (filters[filter].title.startsWith('Artista')) setCurrentFilterOn('Artista')
-    else if (filters[filter].title.startsWith('Álbu')) setCurrentFilterOn('Álbum')
+    setCurrentFilterOn(() => (
+      filters[filter].title.startsWith('Playlist') ? 'Playlist' :
+      filters[filter].title.startsWith('Artista') ? 'Artista' :
+      filters[filter].title.startsWith('Álbu') ? 'Álbum' : ''
+    ))
     
-    /* === UseEffect no começo do arquivo será executado === */
+    /* === useEffect dentro de useFilterEffects.ts será executado, filtrando os itens === */
 
   /* Se o botão foi desativado: */
   } else {
+    /* Resumo: verifica se existe um outro filtro ligado. */
     /* Como eu faço um forEach, se essas verificações não existissem e eu ativasse, por exemplo, o filtro de artistas e depois ativar o da playlist, ele faria isso:
-      - Filtraria todas as playlists, pois playlists agora foi ligado;
-      - Voltaria todos os filtros para o normal, pois artistas mudou para desativado, e quando um botão é desativado, os filtros voltam todos ao normal.
-
+    - Filtraria todas as playlists, pois playlists agora foi ligado;
+    - Voltaria todos os filtros para o normal, pois artistas mudou para desativado, e quando um botão é desativado, os filtros voltam todos ao normal.
+    
     Isso não acontece com playlists (desativei playlists e liguei artistas/álbuns), pois a ordem do loop segue a mesma ordem de ativação e desativação dos botões.
     Sendo assim, fazemos as verificações somente para os botões seguintes. 
     Verificamos se algum outro filtro que não seja ele está ligado. Se sim, então ele não faz nada.
@@ -66,26 +43,24 @@ export default function SetterItems(
         ))
       }
     })
-
+    
     if (isSomeOtherFilterOn) return;
+    /* Se não existe nenhum outro filtro ligado, e o atual foi desligado, então não existe nenhum filtro ligado atualmente */
+    setCurrentFilterOn('')
     /* Se nenhum outro está ligado, volta todos os itens ao estado padrão */
-    else {
-      Object.keys(items).forEach(item => {
-        setItems(prev => {
-          /* Assertion types para o TypeScript saber que os tipos estão corretos */
-          const itemTyped = item as keyof typeof prev
+    Object.keys(items).forEach(item => {
+      setItems(prev => {
+        /* Assertion types para o TypeScript saber que os tipos estão corretos */
+        const itemTyped = item as keyof typeof prev
 
-          const newItems = {
-            ...prev,
-            [itemTyped]: {
-              ...prev[itemTyped],
-              class: defaultItemClass
-            }
+        return {
+          ...prev,
+          [itemTyped]: {
+            ...prev[itemTyped],
+            class: defaultItemClass
           }
-
-          return newItems
-        })
+        }
       })
-    }
+    })
   }
 };

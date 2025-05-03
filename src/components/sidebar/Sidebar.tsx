@@ -9,7 +9,7 @@ import { normalColor, lightNormalColor } from "../utils/tailwindClasses"
 
 export type Item = {
   /* Tipo do item, será mostrado na tela */
-  type: 'Playlist' | 'Artista' | 'Álbum' | 'Folder'
+  type: 'Playlist' | 'Artista' | 'Álbum' | 'Folder' | ''
   /* Nome do item */
   title: string
   /* Author é opcional, pois quando o item é um artista ou uma pasta, ela não possui autor */
