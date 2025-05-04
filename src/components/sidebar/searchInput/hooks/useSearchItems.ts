@@ -97,7 +97,6 @@ export default function useSearchItems(
 
   useEffect(() => {
     if (inputValue) filterItems()
-    else console.log('Não executou');
     
     /* Aqui, eu desabilito o ESLint, porque ele estava pedindo que inputValue estivesse dentro do array de dependências do useEffect.
     Mas isso faz com que esse useEffect seja executado indesejadamente. Aqui, não tem nenhum risco em fazer essa verificação com inputValue. */

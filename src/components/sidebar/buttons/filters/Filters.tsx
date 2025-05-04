@@ -1,6 +1,7 @@
 import { useState, useRef } from "react"
 import { Item, KeyItemsType, SetItemsType } from "../../Sidebar"
 /* Função que atualiza uma propriedade específica de um botão do objeto filters */
+import useCurrentFilterOn from "../../../../contexts/currentFilterOn/useCurrentFilterOn"
 import setterFilterProperty from "./utils/setterFilterProperty"
 import useFilterEffects from "./hooks/useFilterEffects"
 import { bgColors, textColors } from "../../../utils/tailwindClasses"
@@ -62,14 +63,12 @@ export default function Filters({ items, setItems }: Props) {
     albums: filters.albums.isOn
   })
 
-  /* Variável que verifica se algum filtro está ligado. Ela serve para impedir que múltiplos botões possam ser ligados.
-  Ela é um useRef — e não uma variável normal —, porque ela será alterada dentro de um useEffect. */
-  const isSomeFilterOn = useRef<boolean>(false)
+  const {currentFilterOn} = useCurrentFilterOn()
 
   /* UseEffect que é executado quando a propriedade "isOn" de algum dos botões dentro de filters mudam. 
   Esse useEffect fica responsável de modificar as propriedades bg e text do botão que tiver seu isOn alterado,
   e filtrar os itens na barra lateral. */
-  useFilterEffects(filters, setFilters, isSomeFilterOn, prevValuesOfIsOn, items, setItems)
+  useFilterEffects(filters, setFilters, prevValuesOfIsOn, items, setItems)
   
   return (
     <>
@@ -82,14 +81,14 @@ export default function Filters({ items, setItems }: Props) {
           return (
             /* Botão de filtro */
             <button 
-              onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.hovered, filters, setFilters, isSomeFilterOn) }
+              onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.hovered, currentFilterOn, filters, setFilters) }
               onPointerDown={ () => (
                 filterConfig.isOn
-                ? setterFilterProperty(filterTyped, 'bg', bgColors.clickingWhenOn, filters, setFilters, isSomeFilterOn) 
-                : setterFilterProperty(filterTyped, 'bg', bgColors.clicking, filters, setFilters, isSomeFilterOn)
+                ? setterFilterProperty(filterTyped, 'bg', bgColors.clickingWhenOn, currentFilterOn, filters, setFilters) 
+                : setterFilterProperty(filterTyped, 'bg', bgColors.clicking, currentFilterOn, filters, setFilters)
               ) }
-              onPointerUp={ () => setterFilterProperty(filterTyped, 'isOn', !filterConfig.isOn, filters, setFilters, isSomeFilterOn) }
-              onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.normal, filters, setFilters, isSomeFilterOn) }
+              onPointerUp={ () => setterFilterProperty(filterTyped, 'isOn', !filterConfig.isOn, currentFilterOn, filters, setFilters) }
+              onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.normal, currentFilterOn, filters, setFilters) }
               className={`flex justify-center items-center relative right-1 w-fit px-3 py-[0.40rem] rounded-4xl 
               text-sm ${filterConfig.text} font-semibold ${filterConfig.bg} transition cursor-pointer select-none`}
               key={filterConfig.title} /* Diferencia ele dos outros botões */

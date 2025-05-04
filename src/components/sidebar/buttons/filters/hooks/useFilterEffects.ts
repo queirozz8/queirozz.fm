@@ -10,7 +10,6 @@ import { defaultItemClass } from "../../../../utils/tailwindClasses"
 export default function useFilterEffects(
   filters: Record<KeyFiltersType, Filter>,
   setFilters: SetFiltersType,
-  isSomeFilterOn: RefObject<boolean>,
   prevValuesOfIsOn: RefObject<Record<KeyFiltersType, boolean>>,
   items: Record<KeyItemsType, Item>,
   setItems: SetItemsType,
@@ -32,7 +31,7 @@ export default function useFilterEffects(
 
       if (prevIsOn !== filters[filterTyped].isOn) {
         setFilters(prev => {
-          const newFilters = {
+          return {
             ...prev,
             [filterTyped]: {
               ...prev[filterTyped],
@@ -40,10 +39,6 @@ export default function useFilterEffects(
               text: prev[filterTyped].isOn ? textColors.clicked : textColors.normal
             }
           }
-
-          isSomeFilterOn.current = Object.values(newFilters).some(filter => filter.isOn)
-          
-          return newFilters
         })
 
         /* Aqui não tem problema em pegar um valor de um estado logo depois de ter modificado ele;
@@ -65,7 +60,7 @@ export default function useFilterEffects(
         [filter]: filters[filterTyped].isOn
       }
     })
-  }, [filters, setFilters, filters.playlists.isOn, filters.artists.isOn, isSomeFilterOn, prevValuesOfIsOn, items, setItems, currentFilterOn, setCurrentFilterOn])
+  }, [filters, setFilters, filters.playlists.isOn, filters.artists.isOn, prevValuesOfIsOn, items, setItems, currentFilterOn, setCurrentFilterOn])
 
 
   /* UseEffect do setterItems, que será executado quando o filtro atual ligado mudar
