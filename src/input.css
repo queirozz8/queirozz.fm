@@ -2,11 +2,11 @@
 
 /* Configuração da cor da barra lateral da seção dos itens da barra lateral */
 section::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 section::-webkit-scrollbar-thumb {
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 section.section-is-hovering::-webkit-scrollbar-thumb {

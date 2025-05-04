@@ -1,4 +1,6 @@
 import { useState } from "react"
+import useCurrentFilterOn from "../../../../contexts/currentFilterOn/useCurrentFilterOn"
+import useSearchInputValue from "../../../../contexts/searchInputValue/useSearchInputValue"
 import { Item, KeyItemsType } from "../../Sidebar"
 import { Folder, Pin, ArrowRight } from "lucide-react"
 import './../../../../input.css'
@@ -10,6 +12,8 @@ import rainPiano from '@assets/images/items-sidebar/rain_piano.jpg'
 import classicalMusic from '@assets/images/items-sidebar/classical_music.jpg'
 import oneheart from '@assets/images/items-sidebar/oneheart.jpg'
 import potsu from '@assets/images/items-sidebar/potsu.jpeg'
+import austinFarwell from '@assets/images/items-sidebar/austinFarwell.jpeg'
+import homeConfort from '@assets/images/items-sidebar/homeconfort.jpg'
 
 
 const imagesAndIcons = {
@@ -21,7 +25,9 @@ const imagesAndIcons = {
   rainPiano,
   classicalMusic,
   oneheart,
-  potsu
+  potsu,
+  austinFarwell,
+  homeConfort: homeConfort
 } as const
 
 
@@ -30,7 +36,10 @@ type Props = {
 }
 
 export default function CreateItem({ items }: Props) {
-  const sectionDefaultClasses = 'flex flex-col justify-center gap-3 relative right-2 w-[16rem] overflow-x-hidden overflow-y-auto'
+  const {currentFilterOn} = useCurrentFilterOn()
+  const {inputValue} = useSearchInputValue()
+  
+  const sectionDefaultClasses = 'flex flex-col justify-center gap-2 relative right-2 w-[16.7rem] overflow-x-hidden overflow-y-auto'
   const [sectionClasses, setSectionClasses] = useState<string>(sectionDefaultClasses)
 
   const [arrowColor, setArrowColor] = useState('#a6a6a6')
@@ -40,7 +49,7 @@ export default function CreateItem({ items }: Props) {
     <section 
       onMouseOver={ () => setSectionClasses(prev => prev + ' section-is-hovering') }
       onMouseLeave={ () => setSectionClasses(sectionDefaultClasses) }
-      className={sectionClasses}
+      className={currentFilterOn || inputValue ? sectionClasses : sectionClasses + ' pt-44'}
     >
       { (Object.entries(items) as [KeyItemsType, Item][]).map(([item, itemDetails]) => {
         return (

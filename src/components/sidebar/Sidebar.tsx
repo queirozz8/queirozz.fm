@@ -20,7 +20,8 @@ export type Item = {
 
 /* Tipo que será passado para outros arquivos. Ele é definido aqui pois os outros arquivos são filhos dele. 
 Esse tipo descreve as chaves dos itens. */
-export type KeyItemsType = 'workFolder' | 'programmingDeepFocus' | 'codingMusic' | 'purpleCat' | 'lofiCoding' | 'rainPiano' | 'classicalMusic' | 'oneheart' | 'potsu'
+export type KeyItemsType = 'workFolder' | 'programmingDeepFocus' | 'codingMusic' | 'purpleCat' | 'lofiCoding' | 'rainPiano' | 
+'classicalMusic' | 'oneheart' | 'potsu' | 'austinFarwell' | 'homeConfort'
 /* Tipo que também será passado para outros arquivos
 Esse tipo descreve o setter do estado items. */
 export type SetItemsType = React.Dispatch<React.SetStateAction<Record<KeyItemsType, Item>>>
@@ -98,8 +99,23 @@ export default function Sidebar() {
       title: 'potsu',
       author: '',
       class: defaultItemClass
+    },
+
+    austinFarwell: {
+      type: 'Artista',
+      title: 'Austin Farwell',
+      author: '',
+      class: defaultItemClass
+    },
+
+    homeConfort: {
+      type: 'Álbum',
+      title: 'homeconfort',
+      author: 'silphia.',
+      class: defaultItemClass
     }
   })
+
 
   return (
     <aside className="flex flex-col gap-3 relative left-2 w-[17.5rem] h-[46.5rem] p-5 rounded-lg bg-[#121212]">
