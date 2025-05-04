@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+/* Configuração da cor da barra lateral da seção dos itens da barra lateral */
+section::-webkit-scrollbar {
+  width: 10px;
+}
+
+section::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+}
+
+section.section-is-hovering::-webkit-scrollbar-thumb {
+  background-color: #585858; /* gray-800 */
+}

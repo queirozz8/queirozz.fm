@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Item, KeyItemsType } from "../../Sidebar"
 import { Folder, Pin, ArrowRight } from "lucide-react"
+import './../../../../input.css'
 import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.jpg'
 import codingMusic from '@assets/images/items-sidebar/coding_music.jpg'
 import purpleCat from '@assets/images/items-sidebar/purple_cat.jpg'
@@ -8,6 +9,8 @@ import lofiCoding from '@assets/images/items-sidebar/lofi_coding.jpg'
 import rainPiano from '@assets/images/items-sidebar/rain_piano.jpg'
 import classicalMusic from '@assets/images/items-sidebar/classical_music.jpg'
 import oneheart from '@assets/images/items-sidebar/oneheart.jpg'
+import potsu from '@assets/images/items-sidebar/potsu.jpeg'
+
 
 const imagesAndIcons = {
   workFolder: Folder,
@@ -17,18 +20,28 @@ const imagesAndIcons = {
   lofiCoding,
   rainPiano,
   classicalMusic,
-  oneheart
+  oneheart,
+  potsu
 } as const
+
 
 type Props = {
   items: Record<KeyItemsType, Item>
 }
 
 export default function CreateItem({ items }: Props) {
-  const [arrowColor, setArrowColor] = useState('#a6a6a6')
+  const sectionDefaultClasses = 'flex flex-col justify-center gap-3 relative right-2 w-[16rem] overflow-x-hidden overflow-y-auto'
+  const [sectionClasses, setSectionClasses] = useState<string>(sectionDefaultClasses)
 
+  const [arrowColor, setArrowColor] = useState('#a6a6a6')
+  
   return (
-    <section className="flex flex-col justify-center gap-3 relative right-2">
+    /* Essa section vai receber o styling de input.css. Isso vai fazer com que a cor da barra lateral fique escura */
+    <section 
+      onMouseOver={ () => setSectionClasses(prev => prev + ' section-is-hovering') }
+      onMouseLeave={ () => setSectionClasses(sectionDefaultClasses) }
+      className={sectionClasses}
+    >
       { (Object.entries(items) as [KeyItemsType, Item][]).map(([item, itemDetails]) => {
         return (
           <button className={itemDetails.class} key={itemDetails.title}>
