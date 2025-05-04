@@ -1,6 +1,6 @@
 import { Item, SetItemsType, KeyItemsType } from "../../../Sidebar"
 import { Filter, KeyFiltersType } from "../../filters/Filters"
-import { CurrentFilterOnSetterType } from '../../../../../contexts/CurrentFilterOnContext';
+import { CurrentFilterOnSetterType } from '../../../../../contexts/currentFilterOn/CurrentFilterOnContext';
 import { defaultItemClass } from "../../../../utils/tailwindClasses"
 
 export default function SetterItems(

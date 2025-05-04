@@ -1,6 +1,7 @@
 import { useEffect, RefObject } from "react"
 import setterItems from "../../items/utils/setterItems"
-import useCurrentFilterOn from "../../../../../contexts/useCurrentFilterOn"
+import useCurrentFilterOn from "../../../../../contexts/currentFilterOn/useCurrentFilterOn"
+import useSearchInputValue from "../../../../../contexts/searchInputValue/useSearchInputValue"
 import { Filter, KeyFiltersType, SetFiltersType } from '../../filters/Filters'
 import { Item, KeyItemsType, SetItemsType } from "../../../Sidebar"
 import { bgColors, textColors } from "../../../../utils/tailwindClasses"
@@ -16,6 +17,7 @@ export default function useFilterEffects(
 ) {
 
   const { currentFilterOn, setCurrentFilterOn } = useCurrentFilterOn()
+  const {inputValue} = useSearchInputValue()
 
   /* Basicamente, esse useEffect muda as propriedades de cores dos botões quando eles são desligados e ligados,
   e o setterItems filtra os itens da sidebar baseado no filtro atual ligado. */
@@ -71,8 +73,9 @@ export default function useFilterEffects(
   useEffect(() => {
     /* Verifica se existe algum outro filtro ligado */
     const isSomeOtherFilterOn = Object.values(filters).some(filterConfig => filterConfig.isOn)
-    /* Se o filtro atual estiver desligado e também não houver nenhum outro ligado, então ele não deve filtrar nenhum item */
-    if (!currentFilterOn && !isSomeOtherFilterOn) return;
+    /* Se o filtro atual estiver desligado e também não houver nenhum outro ligado, então ele não deve filtrar nenhum item
+    Se existir texto dentro do input ainda, então também não é para ele fazer nada. UseSearchItems.ts já cuida de tudo. */
+    if ((!currentFilterOn && !isSomeOtherFilterOn) || inputValue) return;
     /* Se estiver algum filtro ligado, então ele Itera pelos itens, atualizando a classe com base no filtro ligado */
     Object.entries(items).forEach(([item, itemDetails]) => {
       setItems(prev => {

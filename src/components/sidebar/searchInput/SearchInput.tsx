@@ -1,5 +1,6 @@
 import { useState, useRef } from "react"
 import useSearchItems from "./hooks/useSearchItems"
+import useSearchInputValue from "../../../contexts/searchInputValue/useSearchInputValue"
 import ClearButton from "../../buttons/ClearButton"
 import { Item, KeyItemsType, SetItemsType } from "../Sidebar"
 import { normalColor, lightNormalColor, clickedColor } from "../../utils/tailwindClasses"
@@ -11,7 +12,7 @@ type Props = {
 }
 
 export default function SearchInput({ items, setItems }: Props) {
-  const [inputValue, setInputValue] = useState<string>('')
+  const { inputValue, setInputValue } = useSearchInputValue()
   /* Será usado para mudar o foco da página para o input quando o botão de lupa for apertado */
   const inputRef = useRef<HTMLInputElement>(null)
   const [searchIsOn, setSearchIsOn] = useState<boolean>(false)
@@ -23,7 +24,7 @@ export default function SearchInput({ items, setItems }: Props) {
   const isFirstRender = useRef<boolean>(true)
   
   /* useEffect que contém toda a lógica de filtragem por palavra */
-  useSearchItems(inputValue, items, setItems, isFirstRender)
+  useSearchItems(items, setItems, isFirstRender)
   
   
   return (

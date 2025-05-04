@@ -1,19 +1,49 @@
 import { RefObject, useEffect } from 'react';
 import { Item, KeyItemsType, SetItemsType } from './../../Sidebar';
+import useSearchInputValue from '../../../../contexts/searchInputValue/useSearchInputValue';
+import useCurrentFilterOn from '../../../../contexts/currentFilterOn/useCurrentFilterOn';
 import { defaultItemClass } from './../../../utils/tailwindClasses';
 
 
 export default function useSearchItems(
-  inputValue: string,
   items: Record<KeyItemsType, Item>,
   setItems: SetItemsType,
   isFirstRender: RefObject<boolean>
 ) {
+  const {inputValue} = useSearchInputValue()
+
+  function filterItems() {
+    Object.entries(items).forEach(([item, itemDetails]) => {
+      setItems(prev => {
+        /* Assertion types para o TypeScript saber que os tipos estão corretos */
+        const itemTyped = item as KeyItemsType
+        return {
+          ...prev,
+          [itemTyped]: {
+            ...prev[itemTyped],
+            /* Se o título do item atual incluir o texto do input, então ele será exibido. Caso contrário, ele é ocultado */
+            class: currentFilterOn
+            /* Se existir um botão de filtro ligado, então os filtros também precisarão ser verificados por ele */
+            ? itemDetails.title.toLowerCase().includes(inputValue.toLowerCase()) && itemDetails.type === currentFilterOn
+              ? defaultItemClass
+              : defaultItemClass.replace('flex', 'hidden')
+            /* Caso contrário, só faz a filtragem normal */
+            : itemDetails.title.toLowerCase().includes(inputValue.toLowerCase())
+              ? defaultItemClass
+              : defaultItemClass.replace('flex', 'hidden')
+          }
+        }
+      })
+    })
+  }
+
+  const { currentFilterOn } = useCurrentFilterOn()
+  
   useEffect(() => {
     /* Debounce para evitar ficar re-renderizando excessivamente */
     const debounce = setTimeout(() => {
       /* Já reinicia todos os itens se o input estiver voltado para o estado vazio */
-      if (!inputValue && !isFirstRender.current) {
+      if (!inputValue && !isFirstRender.current && !currentFilterOn) {
         Object.keys(items).forEach(item => {
           /* Assertion types para o TypeScript saber que os tipos estão corretos */
           const itemTyped = item as KeyItemsType
@@ -28,20 +58,24 @@ export default function useSearchItems(
             }
           })
         })
-      } else if (inputValue) {
-        Object.keys(items).forEach(item => {
-            setItems(prev => {
-              /* Assertion types para o TypeScript saber que os tipos estão corretos */
-              const itemTyped = item as KeyItemsType
-              return {
-                ...prev,
-                [itemTyped]: {
-                  ...prev[itemTyped],
-                  /* Se o título do item atual incluir o texto do input, então ele será exibido. Caso contrário, ele é ocultado */
-                  class: item.toLowerCase().includes(inputValue.toLowerCase()) ? defaultItemClass : defaultItemClass.replace('flex', 'hidden')
-                }
+      } else if (inputValue) filterItems()
+        
+      else if (!inputValue && currentFilterOn) {
+        Object.entries(items).forEach(([item, itemDetails]) => {
+          setItems(prev => {
+            /* Assertion types para o TypeScript saber que os tipos estão corretos */
+            const itemTyped = item as keyof typeof prev
+    
+            return {
+              ...prev,
+              [itemTyped]: {
+                ...prev[itemTyped],
+                class: itemDetails.type !== currentFilterOn
+                  ? defaultItemClass.replace('flex gap-2', 'hidden') // Esconde se for de tipo diferente
+                  : defaultItemClass // Mostra se for do mesmo tipo
               }
-            })
+            }
+          })
         })
       }
     }, 300)
@@ -60,4 +94,13 @@ export default function useSearchItems(
     As chaves de items (o motivo pelo qual estamos usando ele dentro do useEffect) são fixas, então também é seguro desabilitar. */
     // eslint-disable-next-line
   }, [inputValue])
+
+  useEffect(() => {
+    if (inputValue) filterItems()
+    else console.log('Não executou');
+    
+    /* Aqui, eu desabilito o ESLint, porque ele estava pedindo que inputValue estivesse dentro do array de dependências do useEffect.
+    Mas isso faz com que esse useEffect seja executado indesejadamente. Aqui, não tem nenhum risco em fazer essa verificação com inputValue. */
+    /* eslint-disable-next-line */
+  }, [currentFilterOn])
 };
