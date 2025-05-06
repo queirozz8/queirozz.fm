@@ -6,11 +6,11 @@ export default function SetterFilterProperty(
   filter: KeyFiltersType, 
   property: 'isOn' | 'bg' | 'text' | 'title',
   value: string | boolean,
-  /* Eu pego currentFilterOn por props e não importando o context, porque o React reclamaria que setterFilterProperty não é um componente ou um hook */
-  currentFilterOn: CurrentFilterOnType,
-  /* Outras variáveis que são necessárias para o contexto geral da função, mas não serão modificadas diretamente */
+  /* Eu pego os parâmetros abaixo por props e não importando o context, porque o React reclamaria que setterFilterProperty não é um componente ou um hook */
   filters: Record<KeyFiltersType, Filter>,
-  setFilters: SetFiltersType) {
+  setFilters: SetFiltersType,
+  currentFilterOn: CurrentFilterOnType) {
+  /* Outras variáveis que são necessárias para o contexto geral da função, mas não serão modificadas diretamente */
   /* Se um botão for ligado, mas já houver outro botão ligado também, então desativamos o primeiro botão e depois ativamos o atual, simultaneamente. */
   if (property === 'isOn' && value === true && currentFilterOn) {
     Object.entries(filters).forEach(([previousFilter, filterConfig]) => {

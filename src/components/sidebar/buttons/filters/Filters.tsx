@@ -81,14 +81,14 @@ export default function Filters({ items, setItems }: Props) {
           return (
             /* Botão de filtro */
             <button 
-              onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.hovered, currentFilterOn, filters, setFilters) }
+              onPointerOver={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.hovered, filters, setFilters, currentFilterOn) }
               onPointerDown={ () => (
                 filterConfig.isOn
-                ? setterFilterProperty(filterTyped, 'bg', bgColors.clickingWhenOn, currentFilterOn, filters, setFilters) 
-                : setterFilterProperty(filterTyped, 'bg', bgColors.clicking, currentFilterOn, filters, setFilters)
+                ? setterFilterProperty(filterTyped, 'bg', bgColors.clickingWhenOn, filters, setFilters, currentFilterOn) 
+                : setterFilterProperty(filterTyped, 'bg', bgColors.clicking, filters, setFilters, currentFilterOn)
               ) }
-              onPointerUp={ () => setterFilterProperty(filterTyped, 'isOn', !filterConfig.isOn, currentFilterOn, filters, setFilters) }
-              onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.normal, currentFilterOn, filters, setFilters) }
+              onPointerUp={ () => setterFilterProperty(filterTyped, 'isOn', !filterConfig.isOn, filters, setFilters, currentFilterOn) }
+              onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.normal, filters, setFilters, currentFilterOn) }
               className={`flex justify-center items-center relative right-1 w-fit px-3 py-[0.40rem] rounded-4xl 
               text-sm ${filterConfig.text} font-semibold ${filterConfig.bg} transition cursor-pointer select-none`}
               key={filterConfig.title} /* Diferencia ele dos outros botões */
