@@ -4,16 +4,16 @@ import useSearchInputValue from "../../../../contexts/searchInputValue/useSearch
 import { Item, KeyItemsType } from "../../Sidebar"
 import { Folder, Pin, ArrowRight } from "lucide-react"
 import './../../../../input.css'
-import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.jpg'
-import codingMusic from '@assets/images/items-sidebar/coding_music.jpg'
-import purpleCat from '@assets/images/items-sidebar/purple_cat.jpg'
-import lofiCoding from '@assets/images/items-sidebar/lofi_coding.jpg'
-import rainPiano from '@assets/images/items-sidebar/rain_piano.jpg'
-import classicalMusic from '@assets/images/items-sidebar/classical_music.jpg'
-import oneheart from '@assets/images/items-sidebar/oneheart.jpg'
-import potsu from '@assets/images/items-sidebar/potsu.jpeg'
-import austinFarwell from '@assets/images/items-sidebar/austinFarwell.jpeg'
-import homeConfort from '@assets/images/items-sidebar/homeconfort.jpg'
+import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.webp'
+import codingMusic from '@assets/images/items-sidebar/coding_music.webp'
+import purpleCat from '@assets/images/items-sidebar/purple_cat.webp'
+import lofiCoding from '@assets/images/items-sidebar/lofi_coding.webp'
+import rainPiano from '@assets/images/items-sidebar/rain_piano.webp'
+import classicalMusic from '@assets/images/items-sidebar/classical_music.webp'
+import oneheart from '@assets/images/items-sidebar/oneheart.webp'
+import potsu from '@assets/images/items-sidebar/potsu.webp'
+import austinFarwell from '@assets/images/items-sidebar/austin_farwell.webp'
+import homeConfort from '@assets/images/items-sidebar/homeconfort.webp'
 
 
 const imagesAndIcons = {
