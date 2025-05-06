@@ -9,7 +9,8 @@ export default function SetterFilterProperty(
   /* Eu pego os parâmetros abaixo por props e não importando o context, porque o React reclamaria que setterFilterProperty não é um componente ou um hook */
   filters: Record<KeyFiltersType, Filter>,
   setFilters: SetFiltersType,
-  currentFilterOn: CurrentFilterOnType) {
+  currentFilterOn: CurrentFilterOnType
+) {
   /* Outras variáveis que são necessárias para o contexto geral da função, mas não serão modificadas diretamente */
   /* Se um botão for ligado, mas já houver outro botão ligado também, então desativamos o primeiro botão e depois ativamos o atual, simultaneamente. */
   if (property === 'isOn' && value === true && currentFilterOn) {
