@@ -26,8 +26,8 @@ export type SetFiltersType = React.Dispatch<React.SetStateAction<Record<string, 
   useFilterEffects fica escutando todos os filtros, para saber se ele foi modificado ou não.
     Quando algum é modificado, então ele muda as propriedades de cores daquele filtro, e chama setterItems.
   setterItems vê se o filtro atual foi modificado para true ou false, e faz sua lógica baseada nisso.
-    Se estiver mudado para true, então ele define que currentFilterOn será esse filtro, e useSetterItemsEffects será executado.
-      useSetterItemsEffects filtra os itens da barra lateral, verificando se o tipo o item é o mesmo que o do currentFilterOn.
+    Se estiver mudado para true, então ele define que currentFilterOn será esse filtro, e o seu useEffect (que está dentro do mesmo arquivo) será executado.
+      O useEffect filtra os itens da barra lateral, verificando se o tipo o item é o mesmo que o do currentFilterOn.
     Se estiver mudado para false, então ele faz toda a lógica para saber se existe um outro filtro ligado, para ver se ele deve desligar os filtros ou não. */
 
 export default function Filters() {

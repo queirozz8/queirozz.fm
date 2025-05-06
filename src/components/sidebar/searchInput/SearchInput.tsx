@@ -1,6 +1,6 @@
 import { useState, useRef } from "react"
 import useSearchItems from "./hooks/useSearchItems"
-import useSearchInputValue from "../../../contexts/searchInputValue/useSearchInputValue"
+import useSearchInputValue from "../../../contexts/searchInputValue/inputValue/useSearchInputValue"
 import ClearButton from "../../buttons/ClearButton"
 import { normalColor, lightNormalColor, clickedColor } from "../../utils/tailwindClasses"
 import { Search, List } from "lucide-react"

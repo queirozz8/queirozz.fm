@@ -2,7 +2,7 @@ import { useState } from "react"
 import useCurrentFilterOn from "../../../../contexts/currentFilterOn/useCurrentFilterOn"
 import useItems from "../../../../contexts/items/useItems"
 import { KeyItemsType, Item } from "../../../../contexts/items/ItemsContext"
-import useSearchInputValue from "../../../../contexts/searchInputValue/useSearchInputValue"
+import useShouldFilter from "../../../../contexts/searchInputValue/shouldFilter/useShouldFilter"
 import { Folder, Pin, ArrowRight } from "lucide-react"
 import './../../../../input.css'
 import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.webp'
@@ -34,19 +34,19 @@ const imagesAndIcons = {
 export default function CreateItem() {
   const {currentFilterOn} = useCurrentFilterOn()
   const {items} = useItems()
-  const {inputValue} = useSearchInputValue()
+  const {shouldFilter} = useShouldFilter()
   
   const sectionDefaultClasses = 'flex flex-col justify-center gap-2 relative right-2 w-[16.7rem] overflow-x-hidden overflow-y-auto'
   const [sectionClasses, setSectionClasses] = useState<string>(sectionDefaultClasses)
 
   const [arrowColor, setArrowColor] = useState('#a6a6a6')
-  
+
   return (
     /* Essa section vai receber o styling de input.css. Isso vai fazer com que a cor da barra lateral fique escura */
     <section 
       onMouseOver={ () => setSectionClasses(prev => prev + ' section-is-hovering') }
       onMouseLeave={ () => setSectionClasses(sectionDefaultClasses) }
-      className={currentFilterOn || inputValue ? sectionClasses : sectionClasses + ' pt-44'}
+      className={currentFilterOn || shouldFilter ? sectionClasses : sectionClasses + ' pt-44'}
     >
       { (Object.entries(items) as [KeyItemsType, Item][]).map(([item, itemDetails]) => {
         return (
