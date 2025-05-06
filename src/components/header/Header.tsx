@@ -22,7 +22,7 @@ export default function Header() {
 
       {/* Ícone branco do Spotify no canto superior esquerdo */}
       <a className='size-8 ml-5 cursor-pointer z-10 select-none' href="">
-        <img title='Spotify' src={spotifyWhite} alt="Spotify logo" />
+        <img title='Spotify' src={spotifyWhite} width={32} height={32} alt="Spotify logo" />
       </a>
 
       {/* Seção de busca que engloba o input central com seus outros botões */}
