@@ -1,6 +1,4 @@
 import { useState, useRef } from "react"
-import { Item, KeyItemsType, SetItemsType } from "../../Sidebar"
-/* Função que atualiza uma propriedade específica de um botão do objeto filters */
 import useCurrentFilterOn from "../../../../contexts/currentFilterOn/useCurrentFilterOn"
 import setterFilterProperty from "./utils/setterFilterProperty"
 import useFilterEffects from "./hooks/useFilterEffects"
@@ -23,11 +21,6 @@ export type KeyFiltersType = 'playlists' | 'artists' | 'albums'
 /* Tipo do setter do estado filters. Ele é definido aqui pois useFilterEffects usará ele. */
 export type SetFiltersType = React.Dispatch<React.SetStateAction<Record<string, Filter>>>
 
-type Props = {
-  items: Record<KeyItemsType, Item>
-  setItems: SetItemsType
-}
-
 /* A ordem é:
   setterFilterProperty transforma um filtro em ligado.
   useFilterEffects fica escutando todos os filtros, para saber se ele foi modificado ou não.
@@ -37,7 +30,7 @@ type Props = {
       useSetterItemsEffects filtra os itens da barra lateral, verificando se o tipo o item é o mesmo que o do currentFilterOn.
     Se estiver mudado para false, então ele faz toda a lógica para saber se existe um outro filtro ligado, para ver se ele deve desligar os filtros ou não. */
 
-export default function Filters({ items, setItems }: Props) {
+export default function Filters() {
   /* Estado centralizado que contém todos os botões de filtro.
   Cada propriedade dentro de filters representa um botão. */
   const [filters, setFilters] = useState<Record<string, Filter>>({
@@ -76,7 +69,7 @@ export default function Filters({ items, setItems }: Props) {
   /* UseEffect que é executado quando a propriedade "isOn" de algum dos botões dentro de filters mudam. 
   Esse useEffect fica responsável de modificar as propriedades bg e text do botão que tiver seu isOn alterado,
   e filtrar os itens na barra lateral. */
-  useFilterEffects(filters, setFilters, prevValuesOfIsOn, items, setItems)
+  useFilterEffects(filters, setFilters, prevValuesOfIsOn)
   
   return (
     <>

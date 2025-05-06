@@ -2,21 +2,20 @@ import { useEffect, RefObject } from "react"
 import setterItems from "../../items/utils/setterItems"
 import useCurrentFilterOn from "../../../../../contexts/currentFilterOn/useCurrentFilterOn"
 import useSearchInputValue from "../../../../../contexts/searchInputValue/useSearchInputValue"
+import useItems from "../../../../../contexts/items/useItems"
 import { Filter, KeyFiltersType, SetFiltersType } from '../../filters/Filters'
-import { Item, KeyItemsType, SetItemsType } from "../../../Sidebar"
 import { bgColors, textColors } from "../../../../utils/tailwindClasses"
 import { defaultItemClass } from "../../../../utils/tailwindClasses"
 
 export default function useFilterEffects(
   filters: Record<KeyFiltersType, Filter>,
   setFilters: SetFiltersType,
-  prevValuesOfIsOn: RefObject<Record<KeyFiltersType, boolean>>,
-  items: Record<KeyItemsType, Item>,
-  setItems: SetItemsType,
+  prevValuesOfIsOn: RefObject<Record<KeyFiltersType, boolean>>
 ) {
 
   const { currentFilterOn, setCurrentFilterOn } = useCurrentFilterOn()
   const {inputValue} = useSearchInputValue()
+  const { items, setItems } = useItems()
 
   /* Basicamente, esse useEffect muda as propriedades de cores dos botões quando eles são desligados e ligados,
   e o setterItems filtra os itens da sidebar baseado no filtro atual ligado. */

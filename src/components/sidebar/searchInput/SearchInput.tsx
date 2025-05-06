@@ -2,16 +2,11 @@ import { useState, useRef } from "react"
 import useSearchItems from "./hooks/useSearchItems"
 import useSearchInputValue from "../../../contexts/searchInputValue/useSearchInputValue"
 import ClearButton from "../../buttons/ClearButton"
-import { Item, KeyItemsType, SetItemsType } from "../Sidebar"
 import { normalColor, lightNormalColor, clickedColor } from "../../utils/tailwindClasses"
 import { Search, List } from "lucide-react"
 
-type Props = {
-  items: Record<KeyItemsType, Item>
-  setItems: SetItemsType
-}
 
-export default function SearchInput({ items, setItems }: Props) {
+export default function SearchInput() {
   const { inputValue, setInputValue } = useSearchInputValue()
   /* Será usado para mudar o foco da página para o input quando o botão de lupa for apertado */
   const inputRef = useRef<HTMLInputElement>(null)
@@ -24,7 +19,7 @@ export default function SearchInput({ items, setItems }: Props) {
   const isFirstRender = useRef<boolean>(true)
   
   /* useEffect que contém toda a lógica de filtragem por palavra */
-  useSearchItems(items, setItems, isFirstRender)
+  useSearchItems(isFirstRender)
   
   
   return (

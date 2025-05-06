@@ -1,7 +1,8 @@
 import { useState } from "react"
 import useCurrentFilterOn from "../../../../contexts/currentFilterOn/useCurrentFilterOn"
+import useItems from "../../../../contexts/items/useItems"
+import { KeyItemsType, Item } from "../../../../contexts/items/ItemsContext"
 import useSearchInputValue from "../../../../contexts/searchInputValue/useSearchInputValue"
-import { Item, KeyItemsType } from "../../Sidebar"
 import { Folder, Pin, ArrowRight } from "lucide-react"
 import './../../../../input.css'
 import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.webp'
@@ -30,13 +31,9 @@ const imagesAndIcons = {
   homeConfort: homeConfort
 } as const
 
-
-type Props = {
-  items: Record<KeyItemsType, Item>
-}
-
-export default function CreateItem({ items }: Props) {
+export default function CreateItem() {
   const {currentFilterOn} = useCurrentFilterOn()
+  const {items} = useItems()
   const {inputValue} = useSearchInputValue()
   
   const sectionDefaultClasses = 'flex flex-col justify-center gap-2 relative right-2 w-[16.7rem] overflow-x-hidden overflow-y-auto'

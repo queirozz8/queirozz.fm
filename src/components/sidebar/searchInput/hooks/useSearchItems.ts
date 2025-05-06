@@ -1,16 +1,15 @@
-import { RefObject, useEffect } from 'react';
-import { Item, KeyItemsType, SetItemsType } from './../../Sidebar';
+import { useEffect, RefObject } from 'react';
+import useItems from '../../../../contexts/items/useItems';
+import { KeyItemsType } from '../../../../contexts/items/ItemsContext';
 import useSearchInputValue from '../../../../contexts/searchInputValue/useSearchInputValue';
 import useCurrentFilterOn from '../../../../contexts/currentFilterOn/useCurrentFilterOn';
-import { defaultItemClass } from './../../../utils/tailwindClasses';
+import { defaultItemClass } from '../../../utils/tailwindClasses';
 
 
-export default function useSearchItems(
-  items: Record<KeyItemsType, Item>,
-  setItems: SetItemsType,
-  isFirstRender: RefObject<boolean>
-) {
+export default function useSearchItems(isFirstRender: RefObject<boolean>) {
   const {inputValue} = useSearchInputValue()
+  const { items, setItems } = useItems()
+
 
   function filterItems() {
     Object.entries(items).forEach(([item, itemDetails]) => {
