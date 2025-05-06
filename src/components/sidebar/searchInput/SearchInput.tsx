@@ -34,7 +34,7 @@ export default function SearchInput() {
         onPointerLeave={ () => setSearchButtonColor(normalColor) }
         className="size-fit p-[6px] rounded-4xl bg-transparent hover:bg-[#2a2a2a] z-50 transition cursor-pointer"
       >
-        <label className="cursor-pointer" htmlFor="search-items">
+        <label onPointerUp={ () => setInputValue('') } className="cursor-pointer" htmlFor="search-items">
           <Search color={searchButtonColor} size={20} />
         </label>
       </div>
