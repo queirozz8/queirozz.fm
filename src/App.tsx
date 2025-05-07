@@ -1,6 +1,6 @@
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
-import Footer from './components/Footer'
+import Footer from './components/footer/Footer'
 /* Variável de contexto global que será usada em múltiplos arquivos */
 import CurrentFilterOnProvider from './contexts/currentFilterOn/CurrentFilterOnProvider'
 import ItemsProvider from './contexts/items/ItemsProvider'
