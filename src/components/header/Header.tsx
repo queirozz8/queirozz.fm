@@ -3,7 +3,7 @@ import CreateButton from '../buttons/CreateButton'
 import ClearButton from '../buttons/ClearButton'
 import UserButton from './buttons/UserButton'
 import { House, Compass, Search, CircleArrowDown, Bell } from 'lucide-react'
-import spotifyWhite from '@assets/images/spotify_white.jpg'
+import spotifyWhite from '@assets/images/header/spotify_white.jpg'
 import { normalColor, lightNormalColor, clickedColor } from '../utils/tailwindClasses'
 
 export default function Header() {

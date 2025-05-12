@@ -15,7 +15,7 @@ export default function Sidebar() {
 
   
   return (
-    <aside className="flex flex-col gap-3 relative left-2 w-[17.5rem] h-[46.5rem] p-5 rounded-lg bg-[#121212]">
+    <aside className="flex flex-col gap-3 w-[17.5rem] h-[48rem] ml-2 p-5 rounded-lg bg-[#121212]">
 
       {/* Div que engloba todos os botões superiores da Sidebar (menos os filtros) */}
       <div className="flex justify-between items-center">

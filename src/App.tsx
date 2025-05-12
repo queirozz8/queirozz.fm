@@ -16,9 +16,14 @@ export default function App() {
           <ShouldFilterProvider>
   
             <Header />
-            <main>
-              <Sidebar />
-            </main>
+            <div className='flex w-full'>
+              <div className='flex-2/12'>
+                <Sidebar />
+              </div>
+              <main className='flex-[90%] mr-2 rounded-lg bg-[#121212]'>
+
+              </main>
+            </div>
             <Footer />
 
           </ShouldFilterProvider>
