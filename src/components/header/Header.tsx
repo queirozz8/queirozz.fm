@@ -31,9 +31,9 @@ export default function Header() {
         {/* Botão de Início */}
         <button
           onPointerOver={ () => setColorHouseButton(prev => prev === clickedColor ? prev : lightNormalColor) }
-          onPointerLeave={ () => setColorHouseButton(normalColor) }
           onPointerDown={ () => setColorHouseButton(clickedColor) }
-          onPointerUp={ () => setColorHouseButton(normalColor) }
+          onClick={ () => setColorHouseButton(normalColor) }
+          onPointerLeave={ () => setColorHouseButton(normalColor) }
           className='p-3 rounded-4xl bg-[#1f1f1f] hover:bg-[var(--bg-color)] hover:scale-105 active:scale-95 active:bg-[#1c1c1c] transition cursor-pointer' 
           title='Início'
           type='button'
@@ -79,9 +79,9 @@ export default function Header() {
           {/* Botão de Navegar */}
           <button 
             onPointerOver={ () => setColorCompassButton(prev => prev === clickedColor ? prev : lightNormalColor) } 
-            onPointerLeave={ () => setColorCompassButton(normalColor) } 
             onPointerDown={ () => setColorCompassButton(clickedColor) }
-            onPointerUp={ () => setColorCompassButton(normalColor) }
+            onClick={ () => setColorCompassButton(normalColor) }
+            onPointerLeave={ () => setColorCompassButton(normalColor) } 
             className='hover:scale-105 active:scale-95 transition cursor-pointer'
             title='Navegar' 
             type='button'
@@ -116,9 +116,9 @@ export default function Header() {
           {/* Botão/Link de "Instalar aplicativo" */}
           <a 
             onPointerOver={ () => setColorInstallButton(lightNormalColor) }
-            onPointerLeave={ () => setColorInstallButton(normalColor) }
+            onClick={ () => setColorInstallButton(lightNormalColor) }
             onPointerDown={ () => setColorInstallButton(clickedColor) }
-            onPointerUp={ () => setColorInstallButton(lightNormalColor) }
+            onPointerLeave={ () => setColorInstallButton(normalColor) }
             className='flex justify-center items-center gap-[0.5rem] relative right-1 text-[#a1a1a1] text-sm font-extrabold 
             hover:scale-105 hover:text-white active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-2px] select-none'
             href='#'
@@ -131,9 +131,9 @@ export default function Header() {
         {/* Botão de Novidades */}
         <button
           onPointerOver={ () => setColorBellButton(prev => prev === clickedColor ? prev : lightNormalColor) } 
-          onPointerLeave={ () => setColorBellButton(normalColor) } 
+          onClick={ () => setColorBellButton(normalColor) }
           onPointerDown={ () => setColorBellButton(clickedColor) }
-          onPointerUp={ () => setColorBellButton(normalColor) }
+          onPointerLeave={ () => setColorBellButton(normalColor) } 
           className='flex justify-center items-center hover:scale-105 transition z-10 cursor-pointer' 
           title='Novidades'
         >

@@ -26,7 +26,7 @@ export default function SearchInput() {
     <div className="flex items-center">
       <div
         onPointerOver={ () => setSearchButtonColor(lightNormalColor) }
-        onPointerUp={ () => {
+        onClick={ () => {
           setSearchIsOn(prev => !prev) 
           /* Faz o foco da página ir para o input */
           inputRef.current?.focus()
@@ -34,7 +34,7 @@ export default function SearchInput() {
         onPointerLeave={ () => setSearchButtonColor(normalColor) }
         className="size-fit p-[6px] rounded-4xl bg-transparent hover:bg-[#2a2a2a] z-50 transition cursor-pointer"
       >
-        <label onPointerUp={ () => setInputValue('') } className="cursor-pointer" htmlFor="search-items">
+        <label onClick={ () => setInputValue('') } className="cursor-pointer" htmlFor="search-items">
           <Search color={searchButtonColor} size={20} />
         </label>
       </div>
@@ -51,7 +51,7 @@ export default function SearchInput() {
       />
 
       <div 
-        onPointerUp={ () => setSearchIsOn(false) }
+        onClick={ () => setSearchIsOn(false) }
         className="flex items-center absolute left-[12.8rem] size-fit">
         <ClearButton inputValue={inputValue} setInputValue={setInputValue} isSidebar={true} />
       </div>
@@ -60,7 +60,7 @@ export default function SearchInput() {
       <div
         onPointerOver={ () => colorOrderButton !== clickedColor && setColorOrderButton(lightNormalColor) }
         onPointerDown={ () => setColorOrderButton(clickedColor) }
-        onPointerUp={ () => {
+        onClick={ () => {
           setColorOrderButton(lightNormalColor)
           if (!inputValue) setSearchIsOn(false)
         } }

@@ -88,7 +88,7 @@ export default function Filters() {
                 ? setterFilterProperty(filterTyped, 'bg', bgColors.clickingWhenOn, filters, setFilters, currentFilterOn) 
                 : setterFilterProperty(filterTyped, 'bg', bgColors.clicking, filters, setFilters, currentFilterOn)
               ) }
-              onPointerUp={ () => setterFilterProperty(filterTyped, 'isOn', !filterConfig.isOn, filters, setFilters, currentFilterOn) }
+              onClick={ () => setterFilterProperty(filterTyped, 'isOn', !filterConfig.isOn, filters, setFilters, currentFilterOn) }
               onPointerLeave={ () => !filterConfig.isOn && setterFilterProperty(filterTyped, 'bg', bgColors.normal, filters, setFilters, currentFilterOn) }
               className={`flex justify-center items-center relative right-1 w-fit px-3 py-[0.40rem] rounded-4xl 
               text-sm ${filterConfig.text} font-semibold ${filterConfig.bg} transition cursor-pointer select-none`}
