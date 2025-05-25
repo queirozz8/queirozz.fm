@@ -303,8 +303,8 @@ export default function Footer() {
                 song.volume = 0
                 return 0
               } else {
-                song.volume = 1
-                return 1
+                song.volume = 0.5
+                return 0.5
               } 
             })
           } }
