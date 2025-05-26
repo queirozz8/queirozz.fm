@@ -16,11 +16,9 @@ export default function App() {
           <ShouldFilterProvider>
   
             <Header />
-            <div className='flex w-full'>
-              <div className='flex-2/12'>
+            <div className='flex w-screen gap-2'>
                 <Sidebar />
-              </div>
-              <main className='flex-[90%] mr-2 rounded-lg bg-[#121212]'>
+              <main className='flex-[97%] mr-2 rounded-lg bg-[#121212]'>
 
               </main>
             </div>

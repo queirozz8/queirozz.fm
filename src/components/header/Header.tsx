@@ -107,7 +107,7 @@ export default function Header() {
 
           {/* Botão de "Ver planos Premium" */}
           <button className='flex justify-center items-center w-[10.2rem] h-8 p-4 rounded-3xl text-sm font-extrabold bg-white 
-            hover:scale-105 active:scale-95 active:bg-[#c6c6c7] transition cursor-pointer [word-spacing:-2px] select-none' 
+            hover:scale-105 active:scale-95 active:bg-[#c6c6c7] transition cursor-pointer [word-spacing:-0.125rem] select-none' 
             type='button'
           >
             Ver planos Premium
@@ -120,7 +120,7 @@ export default function Header() {
             onPointerDown={ () => setColorInstallButton(clickedColor) }
             onPointerLeave={ () => setColorInstallButton(normalColor) }
             className='flex justify-center items-center gap-[0.5rem] relative right-1 text-[#a1a1a1] text-sm font-extrabold 
-            hover:scale-105 hover:text-white active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-2px] select-none'
+            hover:scale-105 hover:text-white active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-0.125rem] select-none'
             href='#'
           >
             <span> <CircleArrowDown color={colorInstallButton} size={17} /> </span>

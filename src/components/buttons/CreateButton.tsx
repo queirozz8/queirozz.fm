@@ -38,7 +38,7 @@ export default function CreateButton( {isSidebar}: Props) {
           strokeWidth={isSidebar ? 1.7 : 1.5}
         />
         <span className={`w-0 text-white
-          ${!isSidebar && 'group-hover:opacity-100 group-hover:text-base'} ${!isSidebar && isCreateButtonClicked ? 'opacity-100 text-base' : 'opacity-0 text-[0px]'} transition`}>
+          ${!isSidebar && 'group-hover:opacity-100 group-hover:text-base'} ${!isSidebar && isCreateButtonClicked ? 'opacity-100 text-base' : 'opacity-0 text-[0rem]'} transition`}>
             Criar
         </span>
       </button>
