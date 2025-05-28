@@ -1,5 +1,6 @@
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
+import Main from './components/main/Main'
 import Footer from './components/footer/Footer'
 /* Variável de contexto global que será usada em múltiplos arquivos */
 import CurrentFilterOnProvider from './contexts/currentFilterOn/CurrentFilterOnProvider'
@@ -16,13 +17,15 @@ export default function App() {
           <ShouldFilterProvider>
   
             <Header />
-            <div className='flex w-screen gap-2'>
+            <div className='flex flex-col h-screen'>
+              <div className='flex flex-[90%] gap-2'>
                 <Sidebar />
-              <main className='flex-[97%] mr-2 rounded-lg bg-[#121212]'>
 
-              </main>
+                <Main />
+              </div>
+              
+              <Footer />
             </div>
-            <Footer />
 
           </ShouldFilterProvider>
         </SearchInputValueProvider>
