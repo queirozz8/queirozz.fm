@@ -5,6 +5,7 @@ import CreateItem from "./buttons/items/CreateItem"
 import SearchInput from "./searchInput/SearchInput"
 import { LibraryBig, ArrowRight } from "lucide-react"
 import { normalColor, lightNormalColor } from "../utils/tailwindClasses"
+import '../../input.css'
 
 
 export default function Sidebar() {
@@ -15,7 +16,10 @@ export default function Sidebar() {
 
   
   return (
-    <aside className="flex flex-col flex-[3%] gap-3 w-[17.5rem] h-[48rem] ml-2 p-5 rounded-lg bg-[#121212]">
+    <aside className="flex flex-col flex-[3%] gap-3 w-[17.5rem] 
+      h-[15rem] sm:h-[20.4rem] md:h-[19rem] 2md:h-[26rem] lg:h-[29rem] xl:h-[34rem] 1.5xl:h-[37.3rem] 2xl:h-[37rem] 3xl:h-[37rem] 3.5xl:h-[46rem] 4xl:h-[43rem] 4.5xl:h-[48rem] 6xl:h-[49rem]
+      ml-2 p-5 rounded-lg bg-[#121212]"
+    >
 
       {/* Div que engloba todos os botões superiores da Sidebar (menos os filtros) */}
       <div className="flex justify-between items-center">
