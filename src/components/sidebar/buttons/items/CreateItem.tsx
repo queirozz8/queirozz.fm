@@ -47,7 +47,7 @@ export default function CreateItem() {
       onMouseOver={ () => setSectionClasses(prev => prev + ' section-is-hovering') }
       onMouseLeave={ () => setSectionClasses(sectionDefaultClasses) }
       className={currentFilterOn || shouldFilter ? sectionClasses : sectionClasses + 
-        ' pt-20 sm:pt-44 md:pt-[6rem] 2md:pt-[15rem] lg:pt-[19.5rem] xl:pt-[23rem] 2xl:pt-80 3xl:pt-56 4xl:pt-44 6xl:pt-[8.5rem]'}
+        ' pt-20 sm:pt-44 md:pt-[19rem] 2md:pt-[23rem] 3md:pt-[15rem] lg:pt-[19.5rem] xl:pt-[23rem] 2xl:pt-80 3xl:pt-56 4xl:pt-44 6xl:pt-[8.5rem]'}
     >
       { (Object.entries(items) as [KeyItemsType, Item][]).map(([item, itemDetails]) => {
         return (

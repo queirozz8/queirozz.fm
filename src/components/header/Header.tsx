@@ -21,12 +21,12 @@ export default function Header() {
     <header className='flex justify-between items-center sticky w-screen p-2'>
 
       {/* Ícone branco do Spotify no canto superior esquerdo */}
-      <a className='size-8 ml-5 cursor-pointer z-10 select-none' href="">
+      <a className='hidden sm:inline size-8 ml-5 cursor-pointer z-10 select-none' href="">
         <img title='Spotify' src={spotifyWhite} width={32} height={32} alt="Spotify logo" />
       </a>
 
       {/* Seção de busca que engloba o input central com seus outros botões */}
-      <search className='flex justify-center items-center gap-1 absolute left-[3.7rem] w-screen'>
+      <search className='flex justify-center items-center gap-1 2md:absolute 2md:left-[3.7rem] w-screen'>
         
         {/* Botão de Início */}
         <button
@@ -106,7 +106,7 @@ export default function Header() {
         <nav className='flex justify-center items-center gap-6 relative right-2'>
 
           {/* Botão de "Ver planos Premium" */}
-          <button className='flex justify-center items-center w-[10.2rem] h-8 p-4 rounded-3xl text-sm font-extrabold bg-white 
+          <button className='hidden lg:flex justify-center items-center w-[10.2rem] h-8 p-4 rounded-3xl text-sm font-extrabold bg-white 
             hover:scale-105 active:scale-95 active:bg-[#c6c6c7] transition cursor-pointer [word-spacing:-0.125rem] select-none' 
             type='button'
           >
@@ -119,7 +119,7 @@ export default function Header() {
             onClick={ () => setColorInstallButton(lightNormalColor) }
             onPointerDown={ () => setColorInstallButton(clickedColor) }
             onPointerLeave={ () => setColorInstallButton(normalColor) }
-            className='flex justify-center items-center gap-[0.5rem] relative right-1 text-[#a1a1a1] text-sm font-extrabold 
+            className='hidden xl:flex justify-center items-center gap-[0.5rem] relative right-1 text-[#a1a1a1] text-sm font-extrabold 
             hover:scale-105 hover:text-white active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-0.125rem] select-none'
             href='#'
           >
@@ -134,7 +134,7 @@ export default function Header() {
           onClick={ () => setColorBellButton(normalColor) }
           onPointerDown={ () => setColorBellButton(clickedColor) }
           onPointerLeave={ () => setColorBellButton(normalColor) } 
-          className='flex justify-center items-center hover:scale-105 transition z-10 cursor-pointer' 
+          className='hidden sm:flex justify-center items-center hover:scale-105 transition z-10 cursor-pointer' 
           title='Novidades'
         >
           <Bell color={colorBellButton} size={18} />
