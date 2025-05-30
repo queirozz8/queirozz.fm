@@ -119,7 +119,7 @@ export default function Header() {
             onClick={ () => setColorInstallButton(lightNormalColor) }
             onPointerDown={ () => setColorInstallButton(clickedColor) }
             onPointerLeave={ () => setColorInstallButton(normalColor) }
-            className='hidden 2xl:flex justify-center items-center gap-[0.5rem] relative right-1 text-[#a1a1a1] text-sm font-extrabold 
+            className='hidden 1.2xl:flex justify-center items-center gap-[0.5rem] relative right-1 text-[#a1a1a1] text-sm font-extrabold 
             hover:scale-105 hover:text-white active:scale-95 active:text-[var(--clicked-color)] transition-transform cursor-pointer [word-spacing:-0.125rem] select-none'
             href='#'
           >

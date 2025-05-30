@@ -130,7 +130,7 @@ export default function Footer() {
       </div>
 
       {/* Parte central do footer, contendo o player e seus outros botões auxiliares */}
-      <div className="flex flex-col gap-2 relative right-8 3md:left-10 top-5 w-screen">
+      <div className="flex flex-col gap-2 relative right-8 lg:left-10 top-5 w-screen">
 
         {/* Div dos botões auxiliares do player */}
         <div className="flex justify-center items-center gap-5">
@@ -289,7 +289,7 @@ export default function Footer() {
         <button 
           onPointerOver={ () => setDeviceColor(lightNormalColor) }
           onPointerLeave={ () => setDeviceColor(normalColor) }
-          className="hidden 3md:inline hover:scale-105 active:scale-95 transition cursor-pointer"
+          className="hidden lg:inline hover:scale-105 active:scale-95 transition cursor-pointer"
           title="Conectar a um dispositivo"
         >
           <Computer color={deviceColor} size={20} />
