@@ -1,7 +1,7 @@
 import { useState } from "react"
 import CreateButton from "../buttons/CreateButton"
 import Filters from "./buttons/filters/Filters"
-import CreateItem from "./buttons/items/CreateItem"
+import CreateSidebarItem from "./buttons/items/CreateSidebarItem"
 import SearchInput from "./searchInput/SearchInput"
 import { LibraryBig, ArrowRight } from "lucide-react"
 import { normalColor, lightNormalColor } from "../utils/tailwindClasses"
@@ -57,7 +57,7 @@ export default function Sidebar() {
       {/* Input de busca dos itens */}
       <SearchInput />
       {/* Itens da barra lateral */}
-      <CreateItem />
+      <CreateSidebarItem />
     </aside>
   )
 }

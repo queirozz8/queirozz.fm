@@ -5,16 +5,16 @@ import { KeyItemsType, Item } from "../../../../contexts/items/ItemsContext"
 import useShouldFilter from "../../../../contexts/searchInputValue/shouldFilter/useShouldFilter"
 import { Folder, Pin, ArrowRight } from "lucide-react"
 import './../../../../input.css'
-import programmingDeepFocus from '@assets/images/items-sidebar/programming_deep_focus.webp'
-import codingMusic from '@assets/images/items-sidebar/coding_music.webp'
-import purpleCat from '@assets/images/items-sidebar/purple_cat.webp'
-import lofiCoding from '@assets/images/items-sidebar/lofi_coding.webp'
-import rainPiano from '@assets/images/items-sidebar/rain_piano.webp'
-import classicalMusic from '@assets/images/items-sidebar/classical_music.webp'
-import oneheart from '@assets/images/items-sidebar/oneheart.webp'
-import potsu from '@assets/images/items-sidebar/potsu.webp'
-import austinFarwell from '@assets/images/items-sidebar/austin_farwell.webp'
-import homeConfort from '@assets/images/items-sidebar/homeconfort.webp'
+import programmingDeepFocus from '@assets/images/songs/programming_deep_focus.webp'
+import codingMusic from '@assets/images/songs/coding_music.webp'
+import purpleCat from '@assets/images/songs/purple_cat.webp'
+import lofiCoding from '@assets/images/songs/lofi_coding.webp'
+import rainPiano from '@assets/images/songs/rain_piano.webp'
+import classicalMusic from '@assets/images/songs/classical_music.webp'
+import oneheart from '@assets/images/artists/oneheart.webp'
+import potsu from '@assets/images/songs/potsu.webp'
+import austinFarwell from '@assets/images/songs/austin_farwell.webp'
+import homeConfort from '@assets/images/songs/homeconfort.webp'
 
 
 const imagesAndIcons = {
@@ -31,7 +31,7 @@ const imagesAndIcons = {
   homeConfort: homeConfort
 } as const
 
-export default function CreateItem() {
+export default function CreateSidebarItem() {
   const {currentFilterOn} = useCurrentFilterOn()
   const {items} = useItems()
   const {shouldFilter} = useShouldFilter()
@@ -69,14 +69,14 @@ export default function CreateItem() {
                     onPointerLeave={ () => setArrowColor('#a6a6a6') }
                     className="relative"
                   >
-                    <h1 className="text-start w-[11.7rem] text-[#eeeeee] truncate">Work</h1>
+                    <h1 className="w-[11.7rem] text-[#eeeeee] text-start truncate">Work</h1>
                     <h2 className="flex gap-1 text-start text-[#ababab] text-sm truncate"><Pin color="#1dd45e" size={18} />15 playlists</h2>
                     <div className="absolute bottom-3 left-40"><ArrowRight color={arrowColor} size={20} /></div>
                   </div>
                 ) : (
                   <>
-                    <h1 className="text-start w-[11.7rem] text-[#eeeeee] truncate">{itemDetails.title}</h1>
-                    <h2 className="text-start text-[#ababab] text-sm truncate">{itemDetails.type} {itemDetails.author && ` • ${itemDetails.author}`}</h2>
+                    <h1 className="w-[11.7rem] text-[#eeeeee] text-start truncate">{itemDetails.title}</h1>
+                    <h2 className="text-[#ababab] text-sm text-start truncate">{itemDetails.type} {itemDetails.author && ` • ${itemDetails.author}`}</h2>
                   </>
                 )
               }
