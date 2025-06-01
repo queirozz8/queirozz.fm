@@ -20,8 +20,8 @@ export default function Header() {
     <header className='flex justify-between items-center sticky w-screen p-2'>
 
       {/* Ícone do queirozz.fm no canto superior esquerdo */}
-      <a className='hidden sm:inline relative right-[2.85rem] cursor-pointer z-10 select-none' href="https://github.com/queirozz8/queirozz.fm" target='_blank'>
-        <svg width="280" height="40" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <a className='hidden sm:inline relative right-[0.4rem] cursor-pointer z-10 select-none' href="https://github.com/queirozz8/queirozz.fm" target='_blank'>
+        <svg width="200" height="40" viewBox="0 0 280 60" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="280" height="60" rx="10" fill="#0F0F0F"/>
           <path d="M20 30C22 24 24 24 26 30C28 36 30 36 32 30C34 24 36 24 38 30C40 36 42 36 44 30C46 24 48 24 50 30" stroke="#8F00FF" strokeWidth="2" strokeLinecap="round"/>
           <text x="60" y="38" fill="white" fontFamily="Fira Code, monospace" fontSize="21">queirozz.fm</text>
