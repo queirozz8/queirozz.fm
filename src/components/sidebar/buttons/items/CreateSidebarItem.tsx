@@ -3,6 +3,7 @@ import useCurrentFilterOn from "../../../../contexts/currentFilterOn/useCurrentF
 import useItems from "../../../../contexts/items/useItems"
 import { KeyItemsType, Item } from "../../../../contexts/items/ItemsContext"
 import useShouldFilter from "../../../../contexts/searchInputValue/shouldFilter/useShouldFilter"
+import useIsFullscreen from "../../../../contexts/fullscreen/useIsFullscreen"
 import { Folder, Pin, ArrowRight } from "lucide-react"
 import './../../../../input.css'
 import programmingDeepFocus from '@assets/images/songs/programming_deep_focus.webp'
@@ -43,13 +44,18 @@ export default function CreateSidebarItem() {
 
   const [arrowColor, setArrowColor] = useState('#a6a6a6')
 
+  /* Verificador para saber se o site está no fullscreen ou não.
+    Isso será usado para modifiar o espaçamento de alguns elementos quando estiver na fullscreen */
+  const {isFullscreen} = useIsFullscreen()
+
   return (
     /* Essa section vai receber o styling de input.css. Isso vai fazer com que a cor da barra lateral fique escura */
     <section 
       onMouseOver={ () => setSectionClasses(sectionDefaultClasses + ' section-is-hovering') }
       onMouseLeave={ () => setSectionClasses(sectionDefaultClasses) }
+      /* Responsividade */
       className={currentFilterOn || shouldFilter ? sectionClasses : sectionClasses + 
-        ' pt-36 sm:pt-72 md:pt-[23rem] 2md:pt-[18.5rem] 2.1md:pt-[13rem] lg:pt-[19rem] 1.2lg:pt-[21rem] 1.3lg:pt-[17rem] 2lg:pt-[20rem] 2.1lg:pt-[17rem] xl:pt-[17rem] 1.1xl:pt-[25rem] 1.2xl:pt-[20rem] 3xl:pt-[25rem] 3.1xl:pt-72 4xl:pt-[15rem] 4.1xl:pt-[20rem] 4.2xl:pt-[15rem] 7xl:pt-[7rem] 8xl:pt-0'}
+        ` pt-36 sm:pt-72 md:pt-[17rem] 2md:pt-[18.5rem] 2.1md:pt-[13rem] lg:pt-[19rem] 1.2lg:pt-[21rem] ${isFullscreen ? '1.3lg:pt-[26rem]' : '1.3lg:pt-[17rem]'} 2lg:pt-[20rem] ${isFullscreen ? '2.1lg:pt-[24rem]' : '2.1lg:pt-[17rem]'} ${isFullscreen ? 'xl:pt-[7rem]' : 'xl:pt-[17rem]'} ${isFullscreen ? '1.1xl:pt-64' : '1.1xl:pt-[25rem]'} 1.2xl:pt-[20rem] 2xl:pt-52 ${isFullscreen ? '3xl:pt-[17rem]' : '3xl:pt-[25rem]'} ${isFullscreen ? '3.1xl:pt-36' : '3.1xl:pt-72'} 4xl:pt-[15rem] ${isFullscreen ? '4.1xl:pt-[11rem]' : '4.1xl:pt-[20rem]'} ${isFullscreen ? '4.2xl:pt-[6rem]' : '4.2xl:pt-[15rem]'} 7xl:pt-[7rem] 8xl:pt-0`}
     >
       { (Object.entries(items) as [KeyItemsType, Item][]).map(([item, itemDetails]) => {
         return (

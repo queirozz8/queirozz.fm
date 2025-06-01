@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react"
 import { normalColor, lightNormalColor } from "../utils/tailwindClasses"
 import { Shuffle, SkipBack, SkipForward, Repeat, Repeat1, 
   SquarePlay, MicVocal, ListMusic, Computer, VolumeX, Volume1, Volume2, Maximize, Minimize } from "lucide-react"
+import useIsFullscreen from "../../contexts/fullscreen/useIsFullscreen"
 import asTheLightFadesImage from '@assets/images/footer/as_the_light_fades.webp'
 
 /* Música que será tocada. */
@@ -34,6 +35,9 @@ export default function Footer() {
   const [isClicking, setIsClicking] = useState<boolean>(false)
   const musicInterval = useRef<number | null>(null)
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
+
+  /* Verificador se está na fullscreen ou não. Será usado para mudar o tamanho de alguns elementos quando o usuário fica na fullscreen */
+  const {setIsFullscreen} = useIsFullscreen()
   
   /* Muda o título da aba no navegador se a música estiver tocando ou não */
   if (isPlaying) document.title = 'queirozz.fm - as the light fades • a vow'
@@ -336,8 +340,13 @@ export default function Footer() {
 
         <button 
           onClick={ () => {
-            if (!document.fullscreenElement) document.documentElement.requestFullscreen()
-            else document.exitFullscreen()
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen()
+              setIsFullscreen(true)
+            } else {
+              document.exitFullscreen()
+              setIsFullscreen(false)
+            }
           } }
           onPointerOver={ () => setMaxMinColor(lightNormalColor) }
           onPointerLeave={ () => setMaxMinColor(normalColor) }

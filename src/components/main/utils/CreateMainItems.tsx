@@ -13,7 +13,7 @@ export default function CreateMainItems( {items}: Props) {
             /* Para diferenciação */
             key={itemDetails.title}
           >
-            <img src={itemDetails.image} className="w-16 rounded-lg" alt={`Imagem de ${itemDetails.title}.`} />
+            <img src={itemDetails.image} className="w-16 rounded-lg" alt={`Imagem de ${itemDetails.title}.`} draggable='false' />
             <h1 className="w-full truncate">{itemDetails.title}</h1>
           </button>
       )) }

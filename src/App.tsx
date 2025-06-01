@@ -7,6 +7,7 @@ import CurrentFilterOnProvider from './contexts/currentFilterOn/CurrentFilterOnP
 import ItemsProvider from './contexts/items/ItemsProvider'
 import SearchInputValueProvider from './contexts/searchInputValue/inputValue/SearchInputProvider'
 import ShouldFilterProvider from './contexts/searchInputValue/shouldFilter/ShouldFilterProvider'
+import IsFullscreenProvider from './contexts/fullscreen/FullscreenProvider'
 
 export default function App() {
   return (
@@ -15,18 +16,19 @@ export default function App() {
       <ItemsProvider>
         <SearchInputValueProvider>
           <ShouldFilterProvider>
-  
-            <Header />
-            <div className='flex flex-col h-[99vh]'>
-              <div className='flex flex-grow h-0 gap-2'>
-                <Sidebar />
-
-                <Main />
-              </div>
+            <IsFullscreenProvider>
               
-              <Footer />
-            </div>
+              <Header />
+              <div className='flex flex-col h-[99vh]'>
+                <div className='flex flex-grow h-0 gap-2'>
+                  <Sidebar />
+                  <Main />
+                </div>
+              
+                <Footer />
+              </div>
 
+            </IsFullscreenProvider>
           </ShouldFilterProvider>
         </SearchInputValueProvider>
       </ItemsProvider>
