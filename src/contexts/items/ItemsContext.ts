@@ -13,7 +13,7 @@ export type Item = {
 
 /* Descreve as chaves dos itens. */
 export type KeyItemsType = 'workFolder' | 'programmingDeepFocus' | 'codingMusic' | 'purpleCat' | 'lofiCoding' | 'rainPiano' | 
-'classicalMusic' | 'oneheart' | 'potsu' | 'austinFarwell' | 'homeConfort'
+'classicalMusic' | 'oneheart' | 'reidenshi' | 'potsu' | 'austinFarwell' | 'homeConfort'
 
 /* Descreve o setter do estado items. */
 export type SetItemsType = React.Dispatch<React.SetStateAction<Record<KeyItemsType, Item>>>

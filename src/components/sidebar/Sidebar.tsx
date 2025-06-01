@@ -16,10 +16,7 @@ export default function Sidebar() {
 
   
   return (
-    <aside className="flex flex-col flex-[3%] gap-3 w-[17.5rem] 
-      h-[15rem] sm:h-[20.4rem] md:h-[29rem] 2md:h-[35rem] lg:h-[26rem] 2lg:h-[29rem] xl:h-[34rem] 1.1xl:h-[37.3rem] 1.2xl:h-[37rem] 3xl:h-[37rem] 3.1xl:h-[46rem] 4xl:h-[43rem] 5xl:h-[48rem] 7xl:h-[49rem]
-      ml-2 p-5 rounded-lg bg-[#121212]"
-    >
+    <aside className="flex flex-col flex-[3%] gap-3 w-[17.5rem] ml-2 p-5 rounded-lg bg-[#121212]">
 
       {/* Div que engloba todos os botões superiores da Sidebar (menos os filtros) */}
       <div className="flex justify-between items-center">

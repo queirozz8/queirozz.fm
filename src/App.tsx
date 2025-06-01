@@ -17,8 +17,8 @@ export default function App() {
           <ShouldFilterProvider>
   
             <Header />
-            <div className='flex flex-col h-screen'>
-              <div className='flex flex-[90%] gap-2'>
+            <div className='flex flex-col h-[99vh]'>
+              <div className='flex flex-grow h-0 gap-2'>
                 <Sidebar />
 
                 <Main />

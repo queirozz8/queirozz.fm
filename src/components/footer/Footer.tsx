@@ -116,7 +116,7 @@ export default function Footer() {
 
 
   return (
-    <footer className="flex flex-[10%] mb-18">
+    <footer className="flex grow-[10%] mb-18">
       
       {/* Parte inicial do footer, antes do player, contendo a música atual que está sendo tocada */}
       <div className="flex items-center gap-2 w-fit mt-4 ml-4">

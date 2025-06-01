@@ -12,8 +12,9 @@ import lofiCoding from '@assets/images/songs/lofi_coding.webp'
 import rainPiano from '@assets/images/songs/rain_piano.webp'
 import classicalMusic from '@assets/images/songs/classical_music.webp'
 import oneheart from '@assets/images/artists/oneheart.webp'
-import potsu from '@assets/images/songs/potsu.webp'
-import austinFarwell from '@assets/images/songs/austin_farwell.webp'
+import reidenshi from '@assets/images/artists/reidenshi.webp'
+import potsu from '@assets/images/artists/potsu.webp'
+import austinFarwell from '@assets/images/artists/austin_farwell.webp'
 import homeConfort from '@assets/images/songs/homeconfort.webp'
 
 
@@ -26,6 +27,7 @@ const imagesAndIcons = {
   rainPiano,
   classicalMusic,
   oneheart,
+  reidenshi,
   potsu,
   austinFarwell,
   homeConfort: homeConfort
@@ -44,10 +46,10 @@ export default function CreateSidebarItem() {
   return (
     /* Essa section vai receber o styling de input.css. Isso vai fazer com que a cor da barra lateral fique escura */
     <section 
-      onMouseOver={ () => setSectionClasses(prev => prev + ' section-is-hovering') }
+      onMouseOver={ () => setSectionClasses(sectionDefaultClasses + ' section-is-hovering') }
       onMouseLeave={ () => setSectionClasses(sectionDefaultClasses) }
       className={currentFilterOn || shouldFilter ? sectionClasses : sectionClasses + 
-        ' pt-20 sm:pt-44 md:pt-[19rem] 2md:pt-[23rem] lg:pt-[15rem] 2lg:pt-[19.5rem] xl:pt-[23rem] 1.2xl:pt-80 3xl:pt-56 4xl:pt-44 4.1xl:pt-[15rem] 4.2xl:pt-44 7xl:pt-[8.5rem]'}
+        ' pt-36 sm:pt-72 md:pt-[23rem] 2md:pt-[18.5rem] 2.1md:pt-[13rem] lg:pt-[19rem] 1.2lg:pt-[21rem] 1.3lg:pt-[17rem] 2lg:pt-[20rem] 2.1lg:pt-[17rem] xl:pt-[17rem] 1.1xl:pt-[25rem] 1.2xl:pt-[20rem] 3xl:pt-[25rem] 3.1xl:pt-72 4xl:pt-[15rem] 4.1xl:pt-[20rem] 4.2xl:pt-[15rem] 7xl:pt-[7rem] 8xl:pt-0'}
     >
       { (Object.entries(items) as [KeyItemsType, Item][]).map(([item, itemDetails]) => {
         return (
@@ -57,7 +59,7 @@ export default function CreateSidebarItem() {
                 typeof imagesAndIcons[item] !== 'string' ? (
                   <Folder color="#a6a6a6" />
                 ) : (
-                  <img src={imagesAndIcons[item]} alt={`Image of this ${itemDetails.type}.`} width={45} height={45} />
+                  <img src={imagesAndIcons[item]} alt={`Image of this ${itemDetails.type}.`} width={45} height={45} draggable='false' />
                 )
               }
             </div>

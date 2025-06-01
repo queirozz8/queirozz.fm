@@ -65,6 +65,13 @@ export default function ItemsProvider({ children }: { children: ReactNode }) {
         class: defaultItemClass
       },
   
+      reidenshi: {
+        type: 'Artista',
+        title: 'reidenshi',
+        author: '',
+        class: defaultItemClass
+      },
+
       potsu: {
         type: 'Artista',
         title: 'potsu',
