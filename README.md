@@ -1,39 +1,50 @@
-<h1>🎶 Spotify Rick - A Spotify Clone</h1>
+<h1>🎶 queirozz.fm - A Spotify Adaptation</h1>
 
-🔗 Site: https://spotify-rick.vercel.app
-<h2>🇺🇸 English: A Spotify clone made entirely by me.</h2>
+🔗 Site: https://queirozz-fm.vercel.app
+<h2>🇺🇸 English: A Spotify adaption made entirely by me from scratch.</h2>
 <h3>I just looked at the original Spotify's functionalities and re-created them in this Website.</h3>
 <h3>⚛ Was made using ReactJS with TypeScript on Vite, Tailwind CSS with Lucide-React and HTML</h3>
 <h3>🚀 Features:</h3>
 
 ###
 
-- Count bills and coins based at their quantities;
-- Button to clear a single input;
-- Button to clear all inputs;
-- Counter showing how many bills and coins you have;
-- Control using the arrows next to the input fields;
-- Support to both computers and mobile devices.
+- Player: Plays music using both keyboard shortcuts (spacebar) and interactive buttons;
+- Full music control through the player scroll bar;
+- Other player functionalities: Automatically repeat the song when it ends using the repeat button; or restart the song from the beginning using the rewind button;
+- Sidebar: Item filtering using both filter buttons and text input, which can be combined;
+- Full volume control through the bar, with the ability to mute or restore to 50% when the button is clicked;
+- Main section with various songs and artists, with horizontally scrollable sections to view more items;
+- Fullscreen button;
+- Responsive to various screen sizes (except mobile, since it's a web application);
+- Animations and different color styles on buttons and other elements;
+- More advanced buttons with interactive menus;
+- Clear all buttons on input fields.
 
-<h4>The goal is to help people who handle large amounts of cash and struggle to keep track of the total.</h4>
+
+<h4>The goal was to practice and learn new technical skills during the building of this project.</h4>
 
 ### 
 
-<h2>🇧🇷 PT-BR: Um clone do Spotify feito interamente por mim.</h2>
+<h2>🇧🇷 PT-BR: Uma adaptação do Spotify feito interamente por mim e do zero.</h2>
 <h3>Eu só olhei as funcionalidades que o Spotify original possui e recriei elas nesse Website.</h3>
 <h3>⚛ Foi feito usando ReactJS com TypeScript no Vite, Tailwind CSS com Lucide-React e HTML</h3>
 <h3>🚀 Funcionalidades:</h3>
 
 ###
 
-- Contar notas e moedas baseado nas suas quantidades;
-- Botão de apagar um input apenas;
-- Botão de apagar todos os inputs;
-- Contador de quantas notas e quantas moedas você possui;
-- Controle pelas setas ao lado do input;
-- Suporte a computadores e celulares.
+- Player: Toca música tanto com atalho do teclado (barra de espaço) quanto com os botões interativos;
+- Controle total da música por meio da barra de scroll do player;
+- Outras funcionalidades do player: Repetir a música automaticamente quando ela acabar com o botão de repetição; ou voltar a música do zero com o botão de retroceder;
+- Barra lateral: Filtragem dos itens por botões de filtro e por texto, podendo ser combinados;
+- Controle total de volume pela barra, podendo ficar no mudo ou voltar a 50% quando o botão é clicado;
+- Main com diversas músicas e artistas, com seções podendo ser scroladas horizontalmente para visualizar mais itens;
+- Botão de fullscreen;
+- Responsividade a diversos tamanhos de tela (menos celulares, por ser uma aplicação web);
+- Animações e colorações diferentes nos botões e tudo mais;
+- Botões mais avançados, com menus interativos;
+- Botões de apagar tudo nos inputs.
 
-<h4>O objetivo é ajudar pessoas que possuem muitas quantidades de dinheiro vivo, que acabam se perdendo para contar todo aquele dinheiro.</h4>
+<h4>O objetivo era praticar e aprender novas habilidades técnicas durante a construção desse projeto.</h4>
 
 
 
@@ -41,11 +52,11 @@
 
 1. First, do a git clone of this project:
 ```
-git clone https://github.com/queirozz8/spotify-rick.git
+git clone https://github.com/queirozz8/queirozz.fm.git
 ```
 2. Go to the directory of the project:
 ```
-cd spotify-rick/
+cd queirozz.fm/
 ```
 3.1. If you don't have pnpm installed, install it:
 ```
@@ -76,11 +87,11 @@ http://localhost:3000
 
 1. Primeiro, faça um git clone desse projeto:
 ```
-git clone https://github.com/queirozz8/spotify-rick.git
+git clone https://github.com/queirozz8/queirozz.fm.git
 ```
 2. Vá para o diretório do projeto:
 ```
-cd spotify-rick/
+cd queirozz.fm/
 ```
 3.1. Se você não tem o pnpm instalado, instale-o:
 ```
