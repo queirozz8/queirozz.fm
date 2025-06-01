@@ -2,8 +2,9 @@
 
 🔗 Site: https://queirozz-fm.vercel.app
 <h2>🇺🇸 English: A Spotify adaption made entirely by me from scratch.</h2>
-<h3>I just looked at the original Spotify's functionalities and re-created them in this Website.</h3>
-<h3>⚛ Was made using ReactJS with TypeScript on Vite, Tailwind CSS with Lucide-React and HTML</h3>
+<h3>🎯 The goal was to practice and learn new technical skills during the building of this project.</h3>
+<h3>⚛ Was made using React.js with TypeScript on Vite, Tailwind CSS with Lucide-React and HTML.</h3>
+<h4>I just looked at the original Spotify's functionalities and re-created them in this Website.</h4>
 <h3>🚀 Features:</h3>
 
 ###
@@ -20,14 +21,12 @@
 - More advanced buttons with interactive menus;
 - Clear all buttons on input fields.
 
-
-<h4>The goal was to practice and learn new technical skills during the building of this project.</h4>
-
 ### 
 
 <h2>🇧🇷 PT-BR: Uma adaptação do Spotify feito interamente por mim e do zero.</h2>
-<h3>Eu só olhei as funcionalidades que o Spotify original possui e recriei elas nesse Website.</h3>
-<h3>⚛ Foi feito usando ReactJS com TypeScript no Vite, Tailwind CSS com Lucide-React e HTML</h3>
+<h3>🎯 O objetivo era praticar e aprender novas habilidades técnicas durante a construção desse projeto.</h3>
+<h3>⚛ Foi feito usando React.js com TypeScript no Vite, Tailwind CSS com Lucide-React e HTML.</h3>
+<h4>Eu só olhei as funcionalidades que o Spotify original possui e recriei elas nesse Website.</h4>
 <h3>🚀 Funcionalidades:</h3>
 
 ###
@@ -43,8 +42,6 @@
 - Animações e colorações diferentes nos botões e tudo mais;
 - Botões mais avançados, com menus interativos;
 - Botões de apagar tudo nos inputs.
-
-<h4>O objetivo era praticar e aprender novas habilidades técnicas durante a construção desse projeto.</h4>
 
 
 
