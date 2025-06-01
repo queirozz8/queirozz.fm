@@ -72,7 +72,7 @@ export default function CreateSidebarItem() {
                     className="relative"
                   >
                     <h1 className="w-[11.7rem] text-[#eeeeee] text-start truncate">Work</h1>
-                    <h2 className="flex gap-1 text-start text-[#ababab] text-sm truncate"><Pin color="#1dd45e" size={18} />15 playlists</h2>
+                    <h2 className="flex gap-1 text-start text-[#ababab] text-sm truncate"><Pin color="#9E1FFF" size={18} />15 playlists</h2>
                     <div className="absolute bottom-3 left-40"><ArrowRight color={arrowColor} size={20} /></div>
                   </div>
                 ) : (

@@ -36,19 +36,19 @@ export default function Footer() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   
   /* Muda o título da aba no navegador se a música estiver tocando ou não */
-  if (isPlaying) document.title = 'Spotify - as the light fades • a vow'
-  else document.title = 'Spotify'
+  if (isPlaying) document.title = 'queirozz.fm - as the light fades • a vow'
+  else document.title = 'queirozz.fm'
 
   /* Lógica quando o usuário começa/pausa o player */
   useEffect(() => {
     if (playOrPauseIcon === 'pause') {
-      /* O título da aba vai virar Spotify com o nome da música tocando e o autor */
+      /* O título da aba vai virar queirozz.fm com o nome da música tocando e o autor */
       setIsPlaying(true)
       playerLogic()
 
       song.play()
     } else {
-      /* O título da aba vai virar Spotify normal */
+      /* O título da aba vai virar queirozz.fm normal */
       setIsPlaying(false)
       /* Se o ícone é o de play (ou seja, a música foi pausada), então ele deve pausar tudo */
       song.pause()
@@ -141,7 +141,7 @@ export default function Footer() {
             className="hover:scale-105 active:scale-95 transition cursor-pointer"
             title={isShuffleOn ? "Desativar a ordem aleatória" : "Ativar a ordem aleatória"}
           >
-            <Shuffle color={isShuffleOn ? '#1dd45e' : shuffleColor} size={20} />
+            <Shuffle color={isShuffleOn ? '#9E1FFF' : shuffleColor} size={20} />
           </button>
 
           {/* Botão de retroceder, que reinicia a música e o player quando for pressionado */}
@@ -225,8 +225,8 @@ export default function Footer() {
               /* Se for diferente de 2, então faz a verificação para saber se o botão está ligado ou não.
               Para assim definir se deve mudar a cor dele.
               Se for igual a 2, então exibe o outro ícone, e já com a cor verde */
-              ? <Repeat color={repeatStage === 0 ? repeatColor : '#1dd45e'} size={20} />
-              : <Repeat1 color="#1dd45e" size={20} />
+              ? <Repeat color={repeatStage === 0 ? repeatColor : '#9E1FFF'} size={20} />
+              : <Repeat1 color="#9E1FFF" size={20} />
             }
           </button>
         </div>
@@ -252,7 +252,7 @@ export default function Footer() {
             max={138}
             step={1}
             value={playerValue}
-            className="w-[30rem] 2md:w-[36rem] h-[0.3rem] accent-white hover:accent-[#1dd45e] cursor-pointer"
+            className="w-[30rem] 2md:w-[36rem] h-[0.3rem] accent-white hover:accent-[#9E1FFF] cursor-pointer"
             type="range"
           />
           <p className="select-none">2:18</p>
@@ -330,7 +330,7 @@ export default function Footer() {
           max={1}
           step={0.01}
           value={volumeValue}
-          className="w-24 h-[0.33rem] accent-white hover:accent-[#1dd45e] cursor-pointer"
+          className="w-24 h-[0.33rem] accent-white hover:accent-[#9E1FFF] cursor-pointer"
           type="range"
         />
 
