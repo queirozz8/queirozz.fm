@@ -258,6 +258,7 @@ export default function Footer() {
             value={playerValue}
             className="w-[30rem] 2md:w-[36rem] h-[0.3rem] accent-white hover:accent-[#9E1FFF] cursor-pointer"
             type="range"
+            id="player"
           />
           <p className="select-none">2:18</p>
         </div>
@@ -336,6 +337,7 @@ export default function Footer() {
           value={volumeValue}
           className="w-24 h-[0.33rem] accent-white hover:accent-[#9E1FFF] cursor-pointer"
           type="range"
+          id="volume"
         />
 
         <button 
