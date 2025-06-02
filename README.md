@@ -21,6 +21,7 @@
 - More advanced buttons with interactive menus;
 - Clear all buttons on input fields.
 
+<h5>Detail: Because it's a web application, of course it doesn't have mobile support. For that, a mobile app should be created, with the full adapted layout.</h5>
 ### 
 
 <h2>🇧🇷 PT-BR: Uma adaptação do Spotify feito interamente por mim e do zero.</h2>
@@ -43,7 +44,8 @@
 - Botões mais avançados, com menus interativos;
 - Botões de apagar tudo nos inputs.
 
-
+<h5>Detalhe: Por ser uma aplicação web, é claro que o suporte para celulares não foi feito. Para isso, existiria um aplicativo mobile, com todo o layout adaptado.</h5>
+###
 
 <h1>🇺🇸 DOCUMENTATION FOR LOCAL INSTALLATION</h1>
 
